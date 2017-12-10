@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
 var babel = require('gulp-babel');
+var webpack_stream = require("webpack-stream");
+const webpack_config = require('./webpack.config.js');
 
 gulp.task('hello', function() {
 	console.log('hello world!');
@@ -40,3 +42,16 @@ gulp.task('babel', () =>
       stream: true
     }))
   );
+
+const paths = {
+    src: './app/js/main.js',
+    build: './dist'
+};
+
+gulp.task('webpack', () => {
+  return webpack_stream(webpack_config)
+  .pipe(gulp.dest(`${paths.build}`))
+  .pipe(browserSync.reload({
+    stream: true
+  }))
+});
