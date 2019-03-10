@@ -5,7 +5,7 @@ firstGameCond.snake.push(getRandomPosition(firstGameCond, sets));
 firstGameCond.food = getRandomPosition(firstGameCond, sets);
 
 document.getElementById("anim").onclick = function() {
-	animate(firstGameCond, sets);
+	setInterval(animate.bind(null, firstGameCond, sets), 100);
 }
 
 init(firstGameCond, sets);

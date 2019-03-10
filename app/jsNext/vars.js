@@ -17,11 +17,13 @@ var sets = {
 	foodColor: foodColor,
 	blockColor: blockColor,
 	nullColor: nullColor,
-	ctx: mainGameCtx
+	ctx: mainGameCtx,
+	warpMode: true
 }
 var firstGameCond = {
 	snake: [],
 	food: [],
 	currentActiveControlButton: "W",
-	blockedFields: []
+	lastMove: "W",
+	block: []
 }

@@ -11,14 +11,39 @@ function getRandomPosition(gameCond, sets) {
     do {
         x = randInRange(0,dimensionInBlocks) * sets.block;
         y = randInRange(0, dimensionInBlocks) * sets.block;
-    } while(![x,y] in gameCond["blockedFields"]);
+    } while(isFieldBlocked([x,y], gameCond));
     
 
     return [x,y];
 }
 
-function randInRange(min,max) 
-{
+function isFieldBlocked([x,y], gameCond) {
+    return isOnFood([x,y], gameCond) || isOnBlock([x,y], gameCond) || isOnSnake([x,y], gameCond);
+}
+function isOnFood([x,y], gameCond) {
+    if (gameCond.food[0] == x && gameCond.food[1] == y) {
+        return true;
+    }
+    return false;
+}
+function isOnBlock([x,y], gameCond) {
+    for (var blockElem of gameCond.block) {
+        if (blockElem[0] == x && blockElem[1] == y) {
+            return true;
+        }
+    }
+    return false;
+}
+function isOnSnake([x,y], gameCond) {
+    for (var snakeElem of gameCond.snake) {
+        if (snakeElem[0] == x && snakeElem[1] == y) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function randInRange(min,max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
@@ -26,27 +51,40 @@ function init(gameCond, sets) {
     var snake = gameCond.snake;
     var food = gameCond.food;
 
-    for (var segment of snake) {
-        drawSegment(segment, "snake", sets);
-    }
-    drawSegment(food, "food", sets);
+    redrawField(gameCond, sets);
 
     document.addEventListener("keydown", function(e) {
+        var cur = gameCond.currentActiveControlButton;
         switch(e.keyCode) {
             case 87:
+            if (gameCond.lastMove != "S") {
                 gameCond.currentActiveControlButton = "W";
-                break;
+            }
+            break;
             case 83:
+            if (gameCond.lastMove != "W") {
                 gameCond.currentActiveControlButton = "S";
-                break;
+            }
+            break;
             case 65:
+            if (gameCond.lastMove != "D") {
                 gameCond.currentActiveControlButton = "A";
-                break;
+            }
+            break;
             case 68:
+            if (gameCond.lastMove != "A") {
                 gameCond.currentActiveControlButton = "D";
-                break;
+            }
+            break;
         }
     })
+}
+
+function redrawField(gameCond, sets) {
+    drawSegment(gameCond.food, "food", sets);
+    for (var segment of gameCond.snake) {
+        drawSegment(segment, "snake", sets);
+    }
 }
 
 function animate(gameCond, sets) {
@@ -57,23 +95,69 @@ function animate(gameCond, sets) {
     var tailIndex = snake.length - 1;
 
     if (gameCond.currentActiveControlButton == "W") {
-        gameCond.snake.unshift([headCoord[0], headCoord[1] - block]);
+        var toBeChanged = headCoord[1] - block;
+        if (sets.warpMode) {
+            toBeChanged %= sets.dimension;
+            if (toBeChanged < 0) {
+                toBeChanged = sets.dimension - sets.block;
+            }
+        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
+            gameOver();
+            return;
+        }
+
+        snake.unshift([headCoord[0], toBeChanged]);
     }
     if (gameCond.currentActiveControlButton == "A") {
-        gameCond.snake.unshift([headCoord[0] - block, headCoord[1]]);
+        var toBeChanged = headCoord[0] - block;
+        if (sets.warpMode) {
+            toBeChanged %= sets.dimension;
+            if (toBeChanged < 0) {
+                toBeChanged = sets.dimension - sets.block;
+            }
+        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
+            gameOver();
+            return;
+        }
+
+        snake.unshift([toBeChanged, headCoord[1]]);
     }
     if (gameCond.currentActiveControlButton == "S") {
-        gameCond.snake.unshift([headCoord[0], headCoord[1] + block]);
+        var toBeChanged = headCoord[1] + block;
+        if (sets.warpMode) {
+            toBeChanged %= sets.dimension;
+            if (toBeChanged < 0) {
+                toBeChanged = sets.dimension - sets.block;
+            }
+        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
+            gameOver();
+            return;
+        }
+
+        snake.unshift([headCoord[0], toBeChanged]);
     }
     if (gameCond.currentActiveControlButton == "D") {
-        gameCond.snake.unshift([headCoord[0] + block, headCoord[1]]);
+        var toBeChanged = headCoord[0] + block;
+        if (sets.warpMode) {
+            toBeChanged %= sets.dimension;
+            if (toBeChanged < 0) {
+                toBeChanged = sets.dimension - sets.block;
+            }
+        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
+            gameOver();
+            return;
+        }
+        
+        snake.unshift([toBeChanged, headCoord[1]]);
     }
+    gameCond.lastMove = gameCond.currentActiveControlButton;
 
     //Remove Tail
-    drawSegment(gameCond.snake.pop(), "null", sets);
-    for (var segment of gameCond.snake) {
-        drawSegment(segment, "snake", sets);
+    if (isOnFood(snake[0], gameCond)) {
+        gameCond.food = getRandomPosition(gameCond, sets);
+    } else {
+        drawSegment(snake.pop(), "null", sets);
     }
 
-
+    redrawField(gameCond, sets);
 }
