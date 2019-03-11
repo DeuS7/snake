@@ -35,9 +35,13 @@ function isOnBlock([x,y], gameCond) {
     return false;
 }
 function isOnSnake([x,y], gameCond) {
-    for (var snakeElem of gameCond.snake) {
-        if (snakeElem[0] == x && snakeElem[1] == y) {
-            return true;
+    //Returns false or index of segment
+    //STARTING FROM ONE!
+    //That's to  get rid of bug, where 0 segment (Head) is said to be vacant
+    //Since 0 is false in bool context
+    for (var i = 0;i<gameCond.snake.length;i++) {
+        if (gameCond.snake[i][0] == x && gameCond.snake[i][1] == y) {
+            return i + 1;
         }
     }
     return false;
@@ -54,26 +58,27 @@ function init(gameCond, sets) {
     redrawField(gameCond, sets);
 
     document.addEventListener("keydown", function(e) {
-        var cur = gameCond.currentActiveControlButton;
+        var cur = gameCond.currentDirection;
         switch(e.keyCode) {
+            //case upButtonKeyCode...
             case 87:
-            if (gameCond.lastMove != "S") {
-                gameCond.currentActiveControlButton = "W";
+            if (gameCond.lastMove != "Down") {
+                gameCond.currentDirection = "Up";
             }
             break;
             case 83:
-            if (gameCond.lastMove != "W") {
-                gameCond.currentActiveControlButton = "S";
+            if (gameCond.lastMove != "Up") {
+                gameCond.currentDirection = "Down";
             }
             break;
             case 65:
-            if (gameCond.lastMove != "D") {
-                gameCond.currentActiveControlButton = "A";
+            if (gameCond.lastMove != "Right") {
+                gameCond.currentDirection = "Left";
             }
             break;
             case 68:
-            if (gameCond.lastMove != "A") {
-                gameCond.currentActiveControlButton = "D";
+            if (gameCond.lastMove != "Left") {
+                gameCond.currentDirection = "Right";
             }
             break;
         }
@@ -94,63 +99,50 @@ function animate(gameCond, sets) {
     var headCoord = snake[0];
     var tailIndex = snake.length - 1;
 
-    if (gameCond.currentActiveControlButton == "W") {
-        var toBeChanged = headCoord[1] - block;
-        if (sets.warpMode) {
-            toBeChanged %= sets.dimension;
-            if (toBeChanged < 0) {
-                toBeChanged = sets.dimension - sets.block;
-            }
-        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
-            gameOver();
-            return;
-        }
+    if (gameCond.currentDirection == "Up") {
+        var newX = headCoord[0];
+        var newY = headCoord[1] - block;
+    }
+    if (gameCond.currentDirection == "Left") {
+        var newX = headCoord[0] - block;
+        var newY = headCoord[1];
+    }
+    if (gameCond.currentDirection == "Down") {
+        var newX = headCoord[0];
+        var newY = headCoord[1] + block;
+    }
+    if (gameCond.currentDirection == "Right") {
+        var newX = headCoord[0] + block;
+        var newY = headCoord[1];
+    }
 
-        snake.unshift([headCoord[0], toBeChanged]);
-    }
-    if (gameCond.currentActiveControlButton == "A") {
-        var toBeChanged = headCoord[0] - block;
-        if (sets.warpMode) {
-            toBeChanged %= sets.dimension;
-            if (toBeChanged < 0) {
-                toBeChanged = sets.dimension - sets.block;
-            }
-        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
-            gameOver();
-            return;
+    if (sets.warpMode) {
+        newX %= sets.dimension;
+        newY %= sets.dimension;
+        if (newX < 0) {
+            newX = sets.dimension - sets.block;
         }
+        if (newY < 0) {
+            newY = sets.dimension - sets.block;
+        }
+    } else if (newX < 0 || newX > gameCond.dimension
+                || newY < 0 || newY > gameCond.dimension) {
+        gameOver();
+        return;
+    }
 
-        snake.unshift([toBeChanged, headCoord[1]]);
-    }
-    if (gameCond.currentActiveControlButton == "S") {
-        var toBeChanged = headCoord[1] + block;
-        if (sets.warpMode) {
-            toBeChanged %= sets.dimension;
-            if (toBeChanged < 0) {
-                toBeChanged = sets.dimension - sets.block;
-            }
-        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
-            gameOver();
-            return;
-        }
+    if (sets.stepOverMode != "stepOver") {
+        var indexOfSegmentAt = isOnSnake([newX, newY], gameCond);
 
-        snake.unshift([headCoord[0], toBeChanged]);
-    }
-    if (gameCond.currentActiveControlButton == "D") {
-        var toBeChanged = headCoord[0] + block;
-        if (sets.warpMode) {
-            toBeChanged %= sets.dimension;
-            if (toBeChanged < 0) {
-                toBeChanged = sets.dimension - sets.block;
+        if (indexOfSegmentAt) {
+            if (sets.stepOverMode == "soft") {
+                gameCond.snake.splice(indexOfSegmentAt);
             }
-        } else if (toBeChanged < 0 || toBeChanged > gameCond.dimension) {
-            gameOver();
-            return;
         }
-        
-        snake.unshift([toBeChanged, headCoord[1]]);
     }
-    gameCond.lastMove = gameCond.currentActiveControlButton;
+
+    snake.unshift([newX, newY]);
+    gameCond.lastMove = gameCond.currentDirection;
 
     //Remove Tail
     if (isOnFood(snake[0], gameCond)) {

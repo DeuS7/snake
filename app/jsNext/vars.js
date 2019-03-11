@@ -8,6 +8,7 @@ var snakeColor = "crimson";
 var foodColor = "green";
 var blockColor = "gray";
 var nullColor = "white";
+var stepOverMode = "soft";
 
 var sets = {
 	dimension: dimension,
@@ -18,12 +19,13 @@ var sets = {
 	blockColor: blockColor,
 	nullColor: nullColor,
 	ctx: mainGameCtx,
-	warpMode: true
+	warpMode: true,
+	stepOverMode: stepOverMode
 }
 var firstGameCond = {
 	snake: [],
 	food: [],
-	currentActiveControlButton: "W",
+	currentDirection: "Up",
 	lastMove: "W",
 	block: []
 }
