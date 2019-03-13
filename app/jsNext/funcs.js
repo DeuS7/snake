@@ -1,7 +1,9 @@
 function drawSegment([x,y], type, sets) {
-    //Gets type, and asks in sets its color
-    sets["ctx"].fillStyle = sets[type + "Color"];
-    sets["ctx"].fillRect(x+1,y+1,sets["segmentWidth"],sets["segmentWidth"]);
+    //Recieves type, and asks in blockTypes its color and size;
+    sets.ctx.fillStyle = blockTypes[type].color;
+    var delta = blockTypes[type].delta;
+    var segWidth = blockTypes[type].segmentWidth;
+    sets.ctx.fillRect(x+delta,y+delta,segWidth,segWidth);
 }
 
 function getRandomPosition(gameCond, sets) {
@@ -86,11 +88,23 @@ function init(gameCond, sets) {
 }
 
 function redrawField(gameCond, sets) {
+    clearField(gameCond, sets);
     drawSegment(gameCond.food, "food", sets);
-    for (var segment of gameCond.snake) {
+    /*for (var segment of gameCond.snake) {
         drawSegment(segment, "snake", sets);
+    }*/
+    for (var [index, segment] of gameCond.snake.entries()) {
+        if (index == 0) {
+            drawSegment(segment, "snakeHead", sets);
+        } else {
+            drawSegment(segment, "snake", sets);
+        }
     }
 }
+function clearField(gameCond, sets) {
+    sets.ctx.clearRect(0,0,sets.dimension, sets.dimension);
+}
+
 
 function animate(gameCond, sets) {
     var snake = gameCond.snake;
@@ -137,6 +151,9 @@ function animate(gameCond, sets) {
         if (indexOfSegmentAt) {
             if (sets.stepOverMode == "soft") {
                 gameCond.snake.splice(indexOfSegmentAt);
+            } 
+            if (sets.stepOverMode == "hard") {
+                gameOver();
             }
         }
     }
@@ -148,7 +165,7 @@ function animate(gameCond, sets) {
     if (isOnFood(snake[0], gameCond)) {
         gameCond.food = getRandomPosition(gameCond, sets);
     } else {
-        drawSegment(snake.pop(), "null", sets);
+        snake.pop();
     }
 
     redrawField(gameCond, sets);
