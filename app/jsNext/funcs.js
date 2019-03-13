@@ -1,9 +1,9 @@
-function drawSegment([x,y], type, sets) {
+function drawSegment([x,y], type, sets, gameCond) {
     //Recieves type, and asks in blockTypes its color and size;
-    sets.ctx.fillStyle = blockTypes[type].color;
+    gameCond.ctx.fillStyle = blockTypes[type].color;
     var delta = blockTypes[type].delta;
     var segWidth = blockTypes[type].segmentWidth;
-    sets.ctx.fillRect(x+delta,y+delta,segWidth,segWidth);
+    gameCond.ctx.fillRect(x+delta,y+delta,segWidth,segWidth);
 }
 
 function getRandomPosition(gameCond, sets) {
@@ -18,9 +18,37 @@ function getRandomPosition(gameCond, sets) {
 
     return [x,y];
 }
+function genObstacles(gameCond, sets) {
+    var maps = [];
+    for (var i = 0;i<sets.amountOfObstacles;i++) {
+        maps[i] = genRandomObstacleMap(sets);
+    }
+
+    //Mask = string like "+0|+0"
+    for (var i = 0;i<maps.length;i++) {
+        var randCoord = getRandomPosition(gameCond, sets);
+
+        for (var mask of maps[i]) {
+            var deltaX = mask.split("|")[0] * sets.block;
+            var deltaY = mask.split("|")[1] * sets.block;
+
+            gameCond.obstacles.push([randCoord[0] + deltaX, randCoord[1] + deltaY])
+        }
+    }
+}
+function genRandomObstacleMap(sets) {
+    var obj = sets.obstacleMaps;
+    var keys = Object.keys(obj)
+    return obj[keys[keys.length * Math.random() << 0]];
+}
+
+
 
 function isFieldBlocked([x,y], gameCond) {
-    return isOnFood([x,y], gameCond) || isOnBlock([x,y], gameCond) || isOnSnake([x,y], gameCond);
+    return isOnFood([x,y], gameCond) 
+    || isOnObstacle([x,y], gameCond) 
+    || isOnSnake([x,y], gameCond);/*
+    || isNearObstacle([x,y], gameCond);*/
 }
 function isOnFood([x,y], gameCond) {
     if (gameCond.food[0] == x && gameCond.food[1] == y) {
@@ -28,14 +56,22 @@ function isOnFood([x,y], gameCond) {
     }
     return false;
 }
-function isOnBlock([x,y], gameCond) {
-    for (var blockElem of gameCond.block) {
+function isOnObstacle([x,y], gameCond) {
+    for (var blockElem of gameCond.obstacles) {
         if (blockElem[0] == x && blockElem[1] == y) {
             return true;
         }
     }
     return false;
-}
+}/*
+function isNearObstacle([x,y], gameCond) {
+    for (var blockElem of gameCond.nearObstacles) {
+        if (blockElem[0] == x && blockElem[1] == y) {
+            return true;
+        }
+    }
+    return false;
+}*/
 function isOnSnake([x,y], gameCond) {
     //Returns false or index of segment
     //STARTING FROM ONE!
@@ -53,12 +89,16 @@ function randInRange(min,max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
+
+
+
 function init(gameCond, sets) {
     gameCond.snakeField.width = sets.dimension;
     gameCond.snakeField.height = sets.dimension;
 
-    gameCond.snake.push(getRandomPosition(gameCond, sets));
     gameCond.food = getRandomPosition(gameCond, sets);
+    genObstacles(gameCond, sets);
+    gameCond.snake.push(getRandomPosition(gameCond, sets));
 
     redrawField(gameCond, sets);
 
@@ -92,32 +132,38 @@ function init(gameCond, sets) {
 
 function redrawField(gameCond, sets) {
     clearField(gameCond, sets);
-    drawSegment(gameCond.food, "food", sets);
+    drawSegment(gameCond.food, "food", sets, gameCond);
 
     for (var [index, segment] of gameCond.snake.entries()) {
         //The order matters, since head and tail may be the same index.
         //In this case, of course, the head is preferable, so in code it's first
         switch(index) {
             case 0:
-                drawSegment(segment, "snakeHead", sets);
-                break;
+            drawSegment(segment, "snakeHead", sets, gameCond);
+            break;
             case 1:
-                drawSegment(segment, "snakeNeck", sets);
-                break;
+            drawSegment(segment, "snakeNeck", sets, gameCond);
+            break;
             case gameCond.snake.length - 1:
-                drawSegment(segment, "snakeTail", sets);
-                break;
+            drawSegment(segment, "snakeTail", sets, gameCond);
+            break;
             default:
-                drawSegment(segment, "snake", sets);
+            drawSegment(segment, "snake", sets, gameCond);
         }
+    }
+    for (var obst of gameCond.obstacles) {
+        drawSegment(obst, "obstacle", sets, gameCond);
     }
 }
 function clearField(gameCond, sets) {
-    sets.ctx.clearRect(0,0,sets.dimension, sets.dimension);
+    gameCond.ctx.clearRect(0,0,sets.dimension, sets.dimension);
 }
 
 
 function animate(gameCond, sets) {
+    if (gameCond.currentDirection == "initialMove") {
+        return;
+    }
     var snake = gameCond.snake;
     var food = gameCond.food;
 
@@ -141,6 +187,9 @@ function animate(gameCond, sets) {
         var newY = headCoord[1];
     }
 
+    if (isOnObstacle([newX, newY], gameCond)) {
+        gameOver();
+    }
     if (sets.warpMode) {
         newX %= sets.dimension;
         newY %= sets.dimension;
@@ -151,11 +200,10 @@ function animate(gameCond, sets) {
             newY = sets.dimension - sets.block;
         }
     } else if (newX < 0 || newX > gameCond.dimension
-                || newY < 0 || newY > gameCond.dimension) {
+        || newY < 0 || newY > gameCond.dimension) {
         gameOver();
         return;
     }
-
     if (sets.stepOverMode != "stepOver") {
         var indexOfSegmentAt = isOnSnake([newX, newY], gameCond);
 
@@ -180,4 +228,20 @@ function animate(gameCond, sets) {
     }
 
     redrawField(gameCond, sets);
+}
+
+//Game Process
+
+function initWholeGame(firstGameCond, secondGameCond, sets) {
+    init(firstGameCond, sets);
+    init(secondGameCond, sets);
+}
+
+function pauseGame(gameCond, sets) {
+    //in sets are different params, like showFieldPaused?
+    clearTimeout(gameCond.snakeTimerId);
+}
+
+function gameOver() {
+    alert("You lose :(");
 }
