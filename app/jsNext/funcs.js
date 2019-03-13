@@ -54,8 +54,11 @@ function randInRange(min,max) {
 }
 
 function init(gameCond, sets) {
-    var snake = gameCond.snake;
-    var food = gameCond.food;
+    gameCond.snakeField.width = sets.dimension;
+    gameCond.snakeField.height = sets.dimension;
+
+    gameCond.snake.push(getRandomPosition(gameCond, sets));
+    gameCond.food = getRandomPosition(gameCond, sets);
 
     redrawField(gameCond, sets);
 
@@ -90,14 +93,22 @@ function init(gameCond, sets) {
 function redrawField(gameCond, sets) {
     clearField(gameCond, sets);
     drawSegment(gameCond.food, "food", sets);
-    /*for (var segment of gameCond.snake) {
-        drawSegment(segment, "snake", sets);
-    }*/
+
     for (var [index, segment] of gameCond.snake.entries()) {
-        if (index == 0) {
-            drawSegment(segment, "snakeHead", sets);
-        } else {
-            drawSegment(segment, "snake", sets);
+        //The order matters, since head and tail may be the same index.
+        //In this case, of course, the head is preferable, so in code it's first
+        switch(index) {
+            case 0:
+                drawSegment(segment, "snakeHead", sets);
+                break;
+            case 1:
+                drawSegment(segment, "snakeNeck", sets);
+                break;
+            case gameCond.snake.length - 1:
+                drawSegment(segment, "snakeTail", sets);
+                break;
+            default:
+                drawSegment(segment, "snake", sets);
         }
     }
 }

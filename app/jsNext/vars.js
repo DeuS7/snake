@@ -1,5 +1,5 @@
-var snakeField = document.getElementById("snakeField");
-var mainGameCtx = snakeField.getContext("2d");
+var firstSnakeField = document.getElementById("firstSnakeField");
+var mainGameCtx = firstSnakeField.getContext("2d");
 
 var dimension = 400;
 const block = 20;
@@ -7,17 +7,12 @@ const block = 20;
 var snakeColor = "crimson";
 var snakeHeadColor = "red";
 var foodColor = "green";
-var blockColor = "gray";
+var obstacleColor = "gray";
 var stepOverMode = "soft";
 
 var sets = {
 	dimension: dimension,
 	block: block,
-	segmentWidth: block-2,
-	snakeColor: snakeColor,
-	snakeHeadColor: snakeHeadColor,
-	foodColor: foodColor,
-	blockColor: blockColor,
 	ctx: mainGameCtx,
 	warpMode: true,
 	stepOverMode: stepOverMode
@@ -36,9 +31,24 @@ var blockTypes = {
 		segmentWidth: block - 6,
 		delta: 1
 	},
+	snakeTail: {
+		color: snakeColor,
+		segmentWidth: block - 4,
+		delta: 1
+	},
+	snakeNeck: {
+		color: snakeColor,
+		segmentWidth: block - 4,
+		delta: 1
+	},
 	food: {
 		color: foodColor,
 		segmentWidth: block,
+		delta: 1
+	},
+	obstacle: {
+		color: obstacleColor,
+		segmentWidth: block + 4,
 		delta: 1
 	}
 }
@@ -52,5 +62,6 @@ var firstGameCond = {
 	food: [],
 	currentDirection: "Up",
 	lastMove: "W",
-	block: []
+	block: [],
+	snakeField: firstSnakeField
 }

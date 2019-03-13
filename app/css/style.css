@@ -48,6 +48,6 @@ body {
   margin: 0 auto;
   width: 1200px; }
 
-#snakeField {
+#firstSnakeField {
   border: 1px solid red;
   margin: 100px; }
