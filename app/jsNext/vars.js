@@ -69,7 +69,7 @@ for (var key in blockTypes) {
 var firstGameCond = {
 	snake: [],
 	food: [],
-	currentDirection: "initialMove",
+	currentDirection: "Up",
 	lastMove: "W",
 	obstacles: [],
 	snakeField: firstSnakeField,
@@ -79,10 +79,17 @@ var firstGameCond = {
 var secondGameCond = {
 	snake: [],
 	food: [],
-	currentDirection: "initialMove",
+	currentDirection: "Up",
 	lastMove: "W",
 	obstacles: [],
 	snakeField: secondSnakeField,
 	ctx: secondGameCtx,
 	snakeTimerId: -1
+}
+var objX = {
+	currentActiveGame: undefined,
+	currentInactiveGame: undefined,
+	currentTimerId: null,
+	currentIterationCount: 0,
+	totalIterationCount: 0
 }

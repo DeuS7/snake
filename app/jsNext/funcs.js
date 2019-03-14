@@ -160,10 +160,10 @@ function clearField(gameCond, sets) {
 }
 
 
-function animate(gameCond, sets) {
+function animate(gameCond, sets) {/*
     if (gameCond.currentDirection == "initialMove") {
         return;
-    }
+    }*/
     var snake = gameCond.snake;
     var food = gameCond.food;
 
@@ -187,9 +187,6 @@ function animate(gameCond, sets) {
         var newY = headCoord[1];
     }
 
-    if (isOnObstacle([newX, newY], gameCond)) {
-        gameOver();
-    }
     if (sets.warpMode) {
         newX %= sets.dimension;
         newY %= sets.dimension;
@@ -216,6 +213,9 @@ function animate(gameCond, sets) {
             }
         }
     }
+    if (isOnObstacle([newX, newY], gameCond)) {
+        gameOver();
+    }
 
     snake.unshift([newX, newY]);
     gameCond.lastMove = gameCond.currentDirection;
@@ -228,20 +228,4 @@ function animate(gameCond, sets) {
     }
 
     redrawField(gameCond, sets);
-}
-
-//Game Process
-
-function initWholeGame(firstGameCond, secondGameCond, sets) {
-    init(firstGameCond, sets);
-    init(secondGameCond, sets);
-}
-
-function pauseGame(gameCond, sets) {
-    //in sets are different params, like showFieldPaused?
-    clearTimeout(gameCond.snakeTimerId);
-}
-
-function gameOver() {
-    alert("You lose :(");
 }
