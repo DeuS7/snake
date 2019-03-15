@@ -54,3 +54,32 @@ body {
 
 #secondSnakeField {
   border: 1px solid red; }
+
+#countdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  padding-top: 20vh;
+  transition: 0.2s;
+  display: none; }
+  #countdown span {
+    font-size: 250px;
+    color: white;
+    transform-origin: center; }
+
+.showCountdown {
+  display: block !important;
+  background: rgba(0, 0, 0, 0.8); }
+
+.countdownWrapperAnim {
+  animation: countdownSpanMinify 0.5s forwards; }
+
+@keyframes countdownSpanMinify {
+  0% {
+    color: white; }
+  100% {
+    color: crimson;
+    font-size: 100px; } }

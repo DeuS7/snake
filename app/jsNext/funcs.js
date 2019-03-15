@@ -47,8 +47,7 @@ function genRandomObstacleMap(sets) {
 function isFieldBlocked([x,y], gameCond) {
     return isOnFood([x,y], gameCond) 
     || isOnObstacle([x,y], gameCond) 
-    || isOnSnake([x,y], gameCond);/*
-    || isNearObstacle([x,y], gameCond);*/
+    || isOnSnake([x,y], gameCond);
 }
 function isOnFood([x,y], gameCond) {
     if (gameCond.food[0] == x && gameCond.food[1] == y) {
@@ -96,8 +95,8 @@ function init(gameCond, sets) {
     gameCond.snakeField.width = sets.dimension;
     gameCond.snakeField.height = sets.dimension;
 
-    gameCond.food = getRandomPosition(gameCond, sets);
     genObstacles(gameCond, sets);
+    gameCond.food = getRandomPosition(gameCond, sets);
     gameCond.snake.push(getRandomPosition(gameCond, sets));
 
     redrawField(gameCond, sets);

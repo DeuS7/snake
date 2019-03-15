@@ -3,6 +3,8 @@ var secondSnakeField = document.getElementById("secondSnakeField");
 var firstGameCtx = firstSnakeField.getContext("2d");
 var secondGameCtx = secondSnakeField.getContext("2d");
 
+var countdownWrapper = document.getElementById("countdown");
+
 var dimension = 400;
 const block = 20;
 var snakeColor = "crimson";
@@ -23,7 +25,10 @@ var sets = {
 	warpMode: true,
 	stepOverMode: stepOverMode,
 	obstacleMaps: obstacleMaps,
-	amountOfObstacles: 6
+	amountOfObstacles: 6,
+	playGameDelay: 1500,
+	stepDelay: 150,
+	countdownWrapper: countdownWrapper
 }
 
 //Settings of each type of block
@@ -89,7 +94,7 @@ var secondGameCond = {
 var objX = {
 	currentActiveGame: undefined,
 	currentInactiveGame: undefined,
-	currentTimerId: null,
+	isGamePaused: true,
 	currentIterationCount: 0,
 	totalIterationCount: 0
 }
