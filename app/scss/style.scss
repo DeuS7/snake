@@ -27,7 +27,7 @@
 		transform-origin: center;
 	}
 }
-.showCountdown {
+.showWrapper {
 	display: block !important;
 	background: rgba(0,0,0,0.8);
 }
@@ -43,4 +43,22 @@
 		color: crimson;
 		font-size: 100px;
 	}
+}
+
+#gameOver {
+	display: none;
+	font-size: 50px;
+	color: white;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	transition: 0.2s;
+	padding-top: 20vh;
+	text-align: center;
+}
+
+.inactiveGame {
+	border: 5px solid red;
 }

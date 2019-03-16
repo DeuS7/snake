@@ -3,7 +3,11 @@ var secondSnakeField = document.getElementById("secondSnakeField");
 var firstGameCtx = firstSnakeField.getContext("2d");
 var secondGameCtx = secondSnakeField.getContext("2d");
 
+var firstGameContainer = document.getElementById("firstGameContainer");
+var secondGameContainer = document.getElementById("secondGameContainer");
+
 var countdownWrapper = document.getElementById("countdown");
+var gameOverWrapper = document.getElementById("gameOver");
 
 var dimension = 400;
 const block = 20;
@@ -25,10 +29,11 @@ var sets = {
 	warpMode: true,
 	stepOverMode: stepOverMode,
 	obstacleMaps: obstacleMaps,
-	amountOfObstacles: 6,
+	amountOfObstacles: 1,
 	playGameDelay: 1500,
 	stepDelay: 150,
-	countdownWrapper: countdownWrapper
+	countdownWrapper: countdownWrapper,
+	gameOverWrapper: gameOverWrapper
 }
 
 //Settings of each type of block
@@ -74,27 +79,33 @@ for (var key in blockTypes) {
 var firstGameCond = {
 	snake: [],
 	food: [],
-	currentDirection: "Up",
+	/*currentDirection: "Up",
+	lastMove: "W",*/
 	lastMove: "W",
 	obstacles: [],
 	snakeField: firstSnakeField,
 	ctx: firstGameCtx,
+	containingBlock: firstGameContainer,
 	snakeTimerId: -1
 }
 var secondGameCond = {
 	snake: [],
 	food: [],
-	currentDirection: "Up",
+	/*currentDirection: "Up",
+	lastMove: "W",*/
 	lastMove: "W",
 	obstacles: [],
 	snakeField: secondSnakeField,
 	ctx: secondGameCtx,
+	containingBlock: secondGameContainer,
 	snakeTimerId: -1
 }
 var objX = {
 	currentActiveGame: undefined,
 	currentInactiveGame: undefined,
-	isGamePaused: true,
+	isGameStopped: true,
 	currentIterationCount: 0,
-	totalIterationCount: 0
+	totalIterationCount: 0,
+	currentScore: 0,
+	currentDirection: "Up"
 }

@@ -91,7 +91,7 @@ function randInRange(min,max) {
 
 
 
-function init(gameCond, sets) {
+function initField(gameCond, sets, objX) {
     gameCond.snakeField.width = sets.dimension;
     gameCond.snakeField.height = sets.dimension;
 
@@ -102,27 +102,27 @@ function init(gameCond, sets) {
     redrawField(gameCond, sets);
 
     document.addEventListener("keydown", function(e) {
-        var cur = gameCond.currentDirection;
+        var cur = objX.currentDirection;
         switch(e.keyCode) {
             //case upButtonKeyCode...
             case 87:
             if (gameCond.lastMove != "Down") {
-                gameCond.currentDirection = "Up";
+                objX.currentDirection = "Up";
             }
             break;
             case 83:
             if (gameCond.lastMove != "Up") {
-                gameCond.currentDirection = "Down";
+                objX.currentDirection = "Down";
             }
             break;
             case 65:
             if (gameCond.lastMove != "Right") {
-                gameCond.currentDirection = "Left";
+                objX.currentDirection = "Left";
             }
             break;
             case 68:
             if (gameCond.lastMove != "Left") {
-                gameCond.currentDirection = "Right";
+                objX.currentDirection = "Right";
             }
             break;
         }
@@ -159,7 +159,7 @@ function clearField(gameCond, sets) {
 }
 
 
-function animate(gameCond, sets) {/*
+function animate(gameCond, sets, objX) {/*
     if (gameCond.currentDirection == "initialMove") {
         return;
     }*/
@@ -169,19 +169,19 @@ function animate(gameCond, sets) {/*
     var headCoord = snake[0];
     var tailIndex = snake.length - 1;
 
-    if (gameCond.currentDirection == "Up") {
+    if (objX.currentDirection == "Up") {
         var newX = headCoord[0];
         var newY = headCoord[1] - block;
     }
-    if (gameCond.currentDirection == "Left") {
+    if (objX.currentDirection == "Left") {
         var newX = headCoord[0] - block;
         var newY = headCoord[1];
     }
-    if (gameCond.currentDirection == "Down") {
+    if (objX.currentDirection == "Down") {
         var newX = headCoord[0];
         var newY = headCoord[1] + block;
     }
-    if (gameCond.currentDirection == "Right") {
+    if (objX.currentDirection == "Right") {
         var newX = headCoord[0] + block;
         var newY = headCoord[1];
     }
@@ -197,7 +197,7 @@ function animate(gameCond, sets) {/*
         }
     } else if (newX < 0 || newX > gameCond.dimension
         || newY < 0 || newY > gameCond.dimension) {
-        gameOver();
+        gameOver(sets, objX);
         return;
     }
     if (sets.stepOverMode != "stepOver") {
@@ -208,23 +208,32 @@ function animate(gameCond, sets) {/*
                 gameCond.snake.splice(indexOfSegmentAt);
             } 
             if (sets.stepOverMode == "hard") {
-                gameOver();
+                gameOver(sets, objX);
+                return;
             }
         }
     }
     if (isOnObstacle([newX, newY], gameCond)) {
-        gameOver();
+        gameOver(sets, objX);
+        return;
     }
 
     snake.unshift([newX, newY]);
-    gameCond.lastMove = gameCond.currentDirection;
+    gameCond.lastMove = objX.currentDirection;
 
     //Remove Tail
     if (isOnFood(snake[0], gameCond)) {
         gameCond.food = getRandomPosition(gameCond, sets);
+        objX.currentScore++;
     } else {
         snake.pop();
     }
 
     redrawField(gameCond, sets);
+}
+
+
+
+function getProperType(x) {
+  return Object.prototype.toString.call(x).slice(8, -1);
 }
