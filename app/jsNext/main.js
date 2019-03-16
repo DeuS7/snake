@@ -15,21 +15,29 @@ document.addEventListener("keydown", function(e) {
             case 87:
             if (objX.currentActiveGame.lastMove != "Down") {
             	objX.currentDirection = "Up";
+            	refreshControlKeysStyles(sets.controlKeys);
+            	sets.controlKeys.w.classList.add("activatedControlKey");
             }
             break;
             case 83:
             if (objX.currentActiveGame.lastMove != "Up") {
             	objX.currentDirection = "Down";
+            	refreshControlKeysStyles(sets.controlKeys);
+            	sets.controlKeys.s.classList.add("activatedControlKey");
             }
             break;
             case 65:
             if (objX.currentActiveGame.lastMove != "Right") {
             	objX.currentDirection = "Left";
+            	refreshControlKeysStyles(sets.controlKeys);
+            	sets.controlKeys.a.classList.add("activatedControlKey");
             }
             break;
             case 68:
             if (objX.currentActiveGame.lastMove != "Left") {
             	objX.currentDirection = "Right";
+            	refreshControlKeysStyles(sets.controlKeys);
+            	sets.controlKeys.d.classList.add("activatedControlKey");
             }
             break;
         }
@@ -168,6 +176,7 @@ function gameOver(sets, objX) {
 	objX.isGameStopped = true;
 
 	refreshGameStyles(objX, sets);
+	toggleControlButton(startButton);
 
 	sets.gameOverWrapper.classList.add("showWrapper");
 	var span = sets.gameOverWrapper.children[0];
@@ -223,5 +232,10 @@ function toggleControlButton(button) {
 	} else {
 		button.disabled = true;
 		pauseStart[button.id].disabled = false;
+	}
+}
+function refreshControlKeysStyles(keys) {
+	for (var key in keys) {
+		keys[key].classList.remove("activatedControlKey");
 	}
 }

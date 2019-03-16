@@ -11,19 +11,27 @@
 </head>
 <body>
 	<div id="firstScreen" class="screen">
-		<div id="firstGameContainer" class="gameContainer inactiveGame">
+		<div id="firstGameContainer" class="gameContainer inactiveGame contentBox">
 			<canvas id="firstSnakeField"></canvas>
 		</div>
-		<div id="controllPanel">
+		<div id="controllPanel" class="middleLine">
 			<button id="startButton" class="controls">Start</button>
 			<button id="pauseButton" class="controls" disabled="true">Pause</button>
 			<span id="scoreBoard" class="scoreBoard">0</span>
+			<div id="controlKeys">
+				<div id="wButton">
+					<span class="wControlKey">W</span>
+				</div>
+				<span class="aControlKey">A</span>
+				<span class="sControlKey">S</span>
+				<span class="dControlKey">D</span>
+			</div>
 		</div>
-		<div id="secondGameContainer" class="gameContainer inactiveGame">
+		<div id="secondGameContainer" class="gameContainer inactiveGame contentBox">
 			<canvas id="secondSnakeField"></canvas>
 		</div>
 	</div>
-	<div class="screen">
+	<div class="screen" id="settings">
 		
 	</div>
 	<div id="countdown"><span>3</span></div>

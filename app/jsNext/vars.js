@@ -17,6 +17,11 @@ var pauseStart = {
 	pauseButton: startButton
 }
 
+var wControlKey = document.getElementsByClassName("wControlKey")[0];
+var aControlKey = document.getElementsByClassName("aControlKey")[0];
+var sControlKey = document.getElementsByClassName("sControlKey")[0];
+var dControlKey = document.getElementsByClassName("dControlKey")[0];
+
 var dimension = 600;
 const block = 25;
 var snakeColor = "crimson";
@@ -37,12 +42,18 @@ var sets = {
 	warpMode: true,
 	stepOverMode: stepOverMode,
 	obstacleMaps: obstacleMaps,
-	amountOfObstacles: 1,
+	amountOfObstacles: 2,
 	playGameDelay: 1500,
 	stepDelay: 100,
 	countdownWrapper: countdownWrapper,
 	gameOverWrapper: gameOverWrapper,
-	scoreBoard: scoreBoard
+	scoreBoard: scoreBoard,
+	controlKeys: {
+		w: wControlKey,
+		a: aControlKey,
+		s: sControlKey,
+		d: dControlKey
+	}
 }
 
 //Settings of each type of block

@@ -60,10 +60,10 @@ body {
   box-shadow: inset 270px 0px 170px 65px rgba(0, 0, 0, 0.85); }
 
 #firstGameContainer {
-  box-shadow: inset -150px 0px 170px 30px white; }
+  box-shadow: inset -150px 0px 170px 30px rgba(253, 150, 150, 0.85); }
 
 #secondGameContainer {
-  box-shadow: inset 150px 0px 170px 30px white; }
+  box-shadow: inset 150px 0px 170px 30px rgba(253, 150, 150, 0.85); }
 
 .screen {
   height: 100vh;
@@ -73,21 +73,16 @@ body {
   border-bottom: 5px solid #636363; }
 
 .gameContainer {
-  width: 42.5%;
   transition: 0.25s;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  background: #c1c1c1; }
+  align-items: center; }
 
 #controllPanel {
-  border-right: 1px solid #636363;
-  border-left: 1px solid #636363;
-  width: 15%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background: #9e001e; }
+  justify-content: center; }
 
 .controls {
   height: 50px;
@@ -110,3 +105,44 @@ body {
 .controls[disabled] {
   cursor: not-allowed;
   opacity: 0.7; }
+
+#controlKeys {
+  display: flex;
+  position: absolute;
+  width: 150%;
+  justify-content: space-between;
+  align-content: space-around;
+  flex-wrap: wrap;
+  font-size: 75px;
+  transform: translate(-17%, 0) perspective(250px) rotateX(35deg);
+  font-weight: bold;
+  bottom: 40px;
+  padding: 15px;
+  background: #c1c1c1;
+  border: 2px solid #636363;
+  z-index: 1000; }
+  #controlKeys span {
+    border: 2px solid #636363;
+    padding: 10px;
+    position: relative;
+    transition: 0.2s; }
+
+#wButton {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center; }
+
+.activatedControlKey {
+  bottom: -5px;
+  transform: perspective(200px) rotateX(10deg);
+  border: 2px solid blue; }
+
+.contentBox {
+  width: 42.5%; }
+
+.middleLine {
+  border-right: 1px solid #636363;
+  border-left: 1px solid #636363;
+  width: 15%;
+  background: #9e001e; }
