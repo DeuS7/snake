@@ -225,6 +225,7 @@ function animate(gameCond, sets, objX) {/*
     if (isOnFood(snake[0], gameCond)) {
         gameCond.food = getRandomPosition(gameCond, sets);
         objX.currentScore++;
+        refreshScoreBoard(sets, objX);
     } else {
         snake.pop();
     }

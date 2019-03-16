@@ -9,8 +9,16 @@ var secondGameContainer = document.getElementById("secondGameContainer");
 var countdownWrapper = document.getElementById("countdown");
 var gameOverWrapper = document.getElementById("gameOver");
 
-var dimension = 400;
-const block = 20;
+var scoreBoard = document.getElementById("scoreBoard");
+var startButton = document.getElementById("startButton");
+var pauseButton = document.getElementById("pauseButton");
+var pauseStart = {
+	startButton: pauseButton,
+	pauseButton: startButton
+}
+
+var dimension = 600;
+const block = 25;
 var snakeColor = "crimson";
 var snakeHeadColor = "red";
 var foodColor = "green";
@@ -33,7 +41,8 @@ var sets = {
 	playGameDelay: 1500,
 	stepDelay: 100,
 	countdownWrapper: countdownWrapper,
-	gameOverWrapper: gameOverWrapper
+	gameOverWrapper: gameOverWrapper,
+	scoreBoard: scoreBoard
 }
 
 //Settings of each type of block
@@ -67,7 +76,7 @@ var blockTypes = {
 	},
 	obstacle: {
 		color: obstacleColor,
-		segmentWidth: block,
+		segmentWidth: block - 2,
 		delta: 1
 	}
 }

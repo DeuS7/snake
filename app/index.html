@@ -4,20 +4,22 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Felix</title>
+	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/media.css">
 </head>
 <body>
 	<div id="firstScreen" class="screen">
-		<div id="firstGameContainer" class="gameContainer">
+		<div id="firstGameContainer" class="gameContainer inactiveGame">
 			<canvas id="firstSnakeField"></canvas>
 		</div>
 		<div id="controllPanel">
-			<button id="anim">animate</button>
-			<button id="pause">pause</button>
+			<button id="startButton" class="controls">Start</button>
+			<button id="pauseButton" class="controls" disabled="true">Pause</button>
+			<span id="scoreBoard" class="scoreBoard">0</span>
 		</div>
-		<div id="secondGameContainer" class="gameContainer">
+		<div id="secondGameContainer" class="gameContainer inactiveGame">
 			<canvas id="secondSnakeField"></canvas>
 		</div>
 	</div>

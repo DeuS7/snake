@@ -1,33 +1,35 @@
-document.getElementById("anim").onclick = function() {
+startButton.onclick = function() {
 	startGame(firstGameCond, secondGameCond, sets, objX);
+	toggleControlButton(this);
 }
-document.getElementById("pause").onclick = function() {
+pauseButton.onclick = function() {
 	pauseGame(objX);
+	toggleControlButton(this);
 }
 
 
 document.addEventListener("keydown", function(e) {
-        var cur = objX.currentDirection;
-        switch(e.keyCode) {
+	var cur = objX.currentDirection;
+	switch(e.keyCode) {
             //case upButtonKeyCode...
             case 87:
             if (objX.currentActiveGame.lastMove != "Down") {
-                objX.currentDirection = "Up";
+            	objX.currentDirection = "Up";
             }
             break;
             case 83:
             if (objX.currentActiveGame.lastMove != "Up") {
-                objX.currentDirection = "Down";
+            	objX.currentDirection = "Down";
             }
             break;
             case 65:
             if (objX.currentActiveGame.lastMove != "Right") {
-                objX.currentDirection = "Left";
+            	objX.currentDirection = "Left";
             }
             break;
             case 68:
             if (objX.currentActiveGame.lastMove != "Left") {
-                objX.currentDirection = "Right";
+            	objX.currentDirection = "Right";
             }
             break;
         }
@@ -53,6 +55,7 @@ function initGame(firstGameCond, secondGameCond, sets, objX) {
 	objX.totalIterationCount = 0;
 	objX.currentIterationCount = 0;
 
+	refreshScoreBoard(sets, objX);
 	sets.gameOverWrapper.classList.remove("showWrapper");
 }
 //If pattern doesn't exist, it clones given condition into newly created field.
@@ -87,24 +90,28 @@ function emptyGameConditions(someGameCond, objX) {
 
 function startGame(firstGameCond, secondGameCond, sets, objX) {
 	objX.isGameStopped = false;
+	
+	//Start game is used both after pause and to actually start game first time.
+	//So if it's the first time, randomize total amount of iterations and field
+	if (objX.currentActiveGame == undefined) {
+		objX.totalIterationCount = randInRange(15,30);
+		var randomGame = randInRange(0,1000);
 
-	var randomGame = randInRange(0,1000);
-
-	//Obivously it's not the best solution, butt it's easy to implement
-	//And that factor is decisive, since I'll barely expand the game to more fields.
-	if (randomGame > 500) {
-		objX.currentActiveGame = firstGameCond;
-		objX.currentInactiveGame = secondGameCond;
-	} else {
-		objX.currentActiveGame = secondGameCond;
-		objX.currentInactiveGame = firstGameCond;
+		//Obivously it's not the best solution, butt it's easy to implement
+		//And that factor is decisive, since I'll barely expand the game to more fields.
+		if (randomGame > 500) {
+			objX.currentActiveGame = firstGameCond;
+			objX.currentInactiveGame = secondGameCond;
+		} else {
+			objX.currentActiveGame = secondGameCond;
+			objX.currentInactiveGame = firstGameCond;
+		}
 	}
 
 	refreshGameStyles(objX, sets);
 	showCountdown(sets);
 	
 	setTimeout(function() {
-		objX.totalIterationCount = randInRange(15,30);
 		setTimeout(function anon() {
 			if (objX.isGameStopped) {
 				return;
@@ -133,27 +140,29 @@ function startGame(firstGameCond, secondGameCond, sets, objX) {
 				if (objX.currentActiveGame.lastMove == "Up" 
 					&& objX.currentDirection == "Down") {
 					objX.currentDirection = "Up";
-				} 
-				if (objX.currentActiveGame.lastMove == "Down" 
-					&& objX.currentDirection == "Up") {
-					objX.currentDirection = "Down";
-				} 
-				if (objX.currentActiveGame.lastMove == "Left" 
-					&& objX.currentDirection == "Right") {
-					objX.currentDirection = "Left";
-				} 
-				if (objX.currentActiveGame.lastMove == "Right" 
-					&& objX.currentDirection == "Left") {
-					objX.currentDirection = "Right";
-				}
-			}
+			} 
+			if (objX.currentActiveGame.lastMove == "Down" 
+				&& objX.currentDirection == "Up") {
+				objX.currentDirection = "Down";
+		} 
+		if (objX.currentActiveGame.lastMove == "Left" 
+			&& objX.currentDirection == "Right") {
+			objX.currentDirection = "Left";
+	} 
+	if (objX.currentActiveGame.lastMove == "Right" 
+		&& objX.currentDirection == "Left") {
+		objX.currentDirection = "Right";
+}
+}
 
-			setTimeout(anon, sets.stepDelay);
-		}, sets.stepDelay);
+setTimeout(anon, sets.stepDelay);
+}, sets.stepDelay);
 	}, sets.playGameDelay);
 }
 function pauseGame(objX) {
 	objX.isGameStopped = true;
+
+	refreshGameStyles(objX, sets);
 }
 function gameOver(sets, objX) {
 	objX.isGameStopped = true;
@@ -198,7 +207,21 @@ function refreshGameStyles(objX, sets) {
 		objX.currentInactiveGame.containingBlock.classList.add("inactiveGame");
 		objX.currentActiveGame.containingBlock.classList.remove("inactiveGame");
 	} else {
-		objX.currentInactiveGame.containingBlock.classList.remove("inactiveGame");
-		objX.currentActiveGame.containingBlock.classList.remove("inactiveGame");
+		objX.currentInactiveGame.containingBlock.classList.add("inactiveGame");
+		objX.currentActiveGame.containingBlock.classList.add("inactiveGame");
+	}
+}
+
+function refreshScoreBoard(sets, objX) {
+	sets.scoreBoard.innerHTML = objX.currentScore;
+}
+
+function toggleControlButton(button) {
+	if (button.disabled == true) {
+		button.disabled = false;
+		pauseStart[button.id].disabled = true;
+	} else {
+		button.disabled = true;
+		pauseStart[button.id].disabled = false;
 	}
 }
