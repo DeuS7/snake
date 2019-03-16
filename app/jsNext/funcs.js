@@ -101,7 +101,7 @@ function initField(gameCond, sets, objX) {
 
     redrawField(gameCond, sets);
 
-    document.addEventListener("keydown", function(e) {
+    /*document.addEventListener("keydown", function(e) {
         var cur = objX.currentDirection;
         switch(e.keyCode) {
             //case upButtonKeyCode...
@@ -126,7 +126,7 @@ function initField(gameCond, sets, objX) {
             }
             break;
         }
-    })
+    })*/
 }
 
 function redrawField(gameCond, sets) {

@@ -6,6 +6,34 @@ document.getElementById("pause").onclick = function() {
 }
 
 
+document.addEventListener("keydown", function(e) {
+        var cur = objX.currentDirection;
+        switch(e.keyCode) {
+            //case upButtonKeyCode...
+            case 87:
+            if (objX.currentActiveGame.lastMove != "Down") {
+                objX.currentDirection = "Up";
+            }
+            break;
+            case 83:
+            if (objX.currentActiveGame.lastMove != "Up") {
+                objX.currentDirection = "Down";
+            }
+            break;
+            case 65:
+            if (objX.currentActiveGame.lastMove != "Right") {
+                objX.currentDirection = "Left";
+            }
+            break;
+            case 68:
+            if (objX.currentActiveGame.lastMove != "Left") {
+                objX.currentDirection = "Right";
+            }
+            break;
+        }
+    })
+
+
 
 initGame(firstGameCond, secondGameCond, sets, objX);
 
@@ -76,7 +104,7 @@ function startGame(firstGameCond, secondGameCond, sets, objX) {
 	showCountdown(sets);
 	
 	setTimeout(function() {
-		objX.totalIterationCount = randInRange(10,30);
+		objX.totalIterationCount = randInRange(15,30);
 		setTimeout(function anon() {
 			if (objX.isGameStopped) {
 				return;
@@ -87,7 +115,7 @@ function startGame(firstGameCond, secondGameCond, sets, objX) {
 
 			if (objX.currentIterationCount > objX.totalIterationCount) {
 				objX.currentIterationCount = 0;
-				objX.totalIterationCount = randInRange(10,30);
+				objX.totalIterationCount = randInRange(15,30);
 
 				//The moment of switch!
 				var temp = objX.currentInactiveGame;

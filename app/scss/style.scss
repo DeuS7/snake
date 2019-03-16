@@ -2,8 +2,6 @@
 
 #firstSnakeField {
 	border: 1px solid red;
-	//DevStyle
-	margin: 100px;
 }
 #secondSnakeField {
 	border: 1px solid red;
@@ -61,4 +59,23 @@
 
 .inactiveGame {
 	border: 5px solid red;
+}
+
+.screen {
+	height: 100vh;
+	width: 100vw;
+
+	border: 1px solid red;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.gameContainer {
+	width: 45%;
+	border: 1px solid black;
+}
+#controllPanel {
+	border: 1px solid red;
+	width: 10%;
 }

@@ -9,12 +9,21 @@
 	<link rel="stylesheet" href="css/media.css">
 </head>
 <body>
-	<div id="firstGameContainer"><canvas id="firstSnakeField"></canvas></div>	
-	<div id="secondGameContainer"><canvas id="secondSnakeField"></canvas></div>
-
-	<button id="anim">animate</button>
-	<button id="pause">pause</button>
-
+	<div id="firstScreen" class="screen">
+		<div id="firstGameContainer" class="gameContainer">
+			<canvas id="firstSnakeField"></canvas>
+		</div>
+		<div id="controllPanel">
+			<button id="anim">animate</button>
+			<button id="pause">pause</button>
+		</div>
+		<div id="secondGameContainer" class="gameContainer">
+			<canvas id="secondSnakeField"></canvas>
+		</div>
+	</div>
+	<div class="screen">
+		
+	</div>
 	<div id="countdown"><span>3</span></div>
 	<div id="gameOver"><span>Sorry dude, you suck</span></div>
 	<!-- MainScript -->

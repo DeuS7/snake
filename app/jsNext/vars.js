@@ -31,7 +31,7 @@ var sets = {
 	obstacleMaps: obstacleMaps,
 	amountOfObstacles: 1,
 	playGameDelay: 1500,
-	stepDelay: 150,
+	stepDelay: 100,
 	countdownWrapper: countdownWrapper,
 	gameOverWrapper: gameOverWrapper
 }
@@ -75,13 +75,12 @@ for (var key in blockTypes) {
 	blockTypes[key].delta = (block - blockTypes[key].segmentWidth) / 2;
 }
 
-
+//We need "Initial Move" so that in the first move player can choose
+//EVERY direction, including down
 var firstGameCond = {
 	snake: [],
 	food: [],
-	/*currentDirection: "Up",
-	lastMove: "W",*/
-	lastMove: "W",
+	lastMove: "InitialMove",
 	obstacles: [],
 	snakeField: firstSnakeField,
 	ctx: firstGameCtx,
@@ -91,9 +90,7 @@ var firstGameCond = {
 var secondGameCond = {
 	snake: [],
 	food: [],
-	/*currentDirection: "Up",
-	lastMove: "W",*/
-	lastMove: "W",
+	lastMove: "InitialMove",
 	obstacles: [],
 	snakeField: secondSnakeField,
 	ctx: secondGameCtx,
