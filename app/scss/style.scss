@@ -71,7 +71,7 @@ canvas {
 
     line-height: 1.5;
 
-    text-shadow: 7px 7px 14px white;
+    text-shadow: 2px 2px 14px white;
 }
 
 .inactiveGame {
@@ -133,7 +133,10 @@ canvas {
 
     border: none;
     background: $mainBackColor;
+
+    text-shadow: 2px 2px 7px black;
 }
+
 
 .scoreBoard {
     font-size: 75px;
@@ -231,15 +234,6 @@ canvas {
     border-right: 1px solid $subColor;
     border-left: 1px solid $subColor;
     background: #9e001e;
-}
 
-#userCanvasContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-#userCanvasWrapper {
-	button {
-		
-	}
+    box-shadow: 0 0 25px 0px black;
 }

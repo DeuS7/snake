@@ -47,7 +47,7 @@ canvas {
   text-align: center;
   color: white;
   line-height: 1.5;
-  text-shadow: 7px 7px 14px white; }
+  text-shadow: 2px 2px 14px white; }
 
 .inactiveGame canvas {
   opacity: .3; }
@@ -91,7 +91,8 @@ canvas {
   cursor: pointer;
   transition: .3s;
   border: none;
-  background: #c1c1c1; }
+  background: #c1c1c1;
+  text-shadow: 2px 2px 7px black; }
 
 .scoreBoard {
   font-size: 75px;
@@ -159,9 +160,5 @@ canvas {
   width: 15%;
   border-right: 1px solid #636363;
   border-left: 1px solid #636363;
-  background: #9e001e; }
-
-#userCanvasContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  background: #9e001e;
+  box-shadow: 0 0 25px 0px black; }

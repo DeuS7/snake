@@ -23,22 +23,6 @@ var aControlKey = document.getElementsByClassName("aControlKey")[0];
 var sControlKey = document.getElementsByClassName("sControlKey")[0];
 var dControlKey = document.getElementsByClassName("dControlKey")[0];
 
-var userCanvas = document.getElementById("userCanvas");
-
-var userCanvasUndoButton = document.getElementById("userCanvasUndoButton");
-var userCanvasClearButton = document.getElementById("userCanvasClearButton");
-var userCanvasSubmitButton = document.getElementById("userCanvasSubmitButton");
-
-var userCanvasSets = {
-	dimension: 400,
-	block: 50,
-	buttons: {
-		undo: userCanvasUndoButton,
-		clear: userCanvasClearButton,
-		submit: userCanvasSubmitButton
-	}
-}
-
 var dimension = 600;
 const block = 25;
 var snakeColor = "crimson";
