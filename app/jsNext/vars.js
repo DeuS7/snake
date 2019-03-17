@@ -17,10 +17,27 @@ var pauseStart = {
 	pauseButton: startButton
 }
 
+var keyBoard = document.getElementById("controlKeys");
 var wControlKey = document.getElementsByClassName("wControlKey")[0];
 var aControlKey = document.getElementsByClassName("aControlKey")[0];
 var sControlKey = document.getElementsByClassName("sControlKey")[0];
 var dControlKey = document.getElementsByClassName("dControlKey")[0];
+
+var userCanvas = document.getElementById("userCanvas");
+
+var userCanvasUndoButton = document.getElementById("userCanvasUndoButton");
+var userCanvasClearButton = document.getElementById("userCanvasClearButton");
+var userCanvasSubmitButton = document.getElementById("userCanvasSubmitButton");
+
+var userCanvasSets = {
+	dimension: 400,
+	block: 50,
+	buttons: {
+		undo: userCanvasUndoButton,
+		clear: userCanvasClearButton,
+		submit: userCanvasSubmitButton
+	}
+}
 
 var dimension = 600;
 const block = 25;
@@ -30,6 +47,9 @@ var foodColor = "green";
 var obstacleColor = "grey";
 var stepOverMode = "soft";
 
+//The numbers are relative to some random block. e.g 1|1 means
+//+1 block on each axis is painted. Like this it's easy to 
+//implement possibility to draw userFigures.
 var obstacleMaps = {
 	cube: ["0|0", "1|0", "0|1", "1|1"],
 	lineHor: ["0|0", "1|0", "2|0", "3|0"],

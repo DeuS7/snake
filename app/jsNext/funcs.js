@@ -154,8 +154,9 @@ function redrawField(gameCond, sets) {
         drawSegment(obst, "obstacle", sets, gameCond);
     }
 }
-function clearField(gameCond, sets) {
-    gameCond.ctx.clearRect(0,0,sets.dimension, sets.dimension);
+
+function clearField(field, sets) {
+    field.ctx.clearRect(0,0,sets.dimension, sets.dimension);
 }
 
 

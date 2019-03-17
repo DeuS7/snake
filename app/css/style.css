@@ -1,148 +1,167 @@
 body {
-  background: #c1c1c1;
-  font-family: 'Stalinist One', cursive; }
+  font-family: 'Stalinist One', cursive;
+  background: #c1c1c1; }
 
-#firstSnakeField {
-  border: 5px solid #9e001e; }
-
-#secondSnakeField {
+canvas {
   border: 5px solid #9e001e; }
 
 #countdown {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  text-align: center;
+  left: 0;
+  display: none;
   padding-top: 20vh;
-  transition: 0.2s;
-  display: none; }
+  transition: .2s;
+  text-align: center; }
   #countdown span {
     font-size: 250px;
-    color: white;
-    transform-origin: center; }
+    transform-origin: center;
+    color: white; }
 
 .showWrapper {
   display: block !important;
   background: rgba(0, 0, 0, 0.8); }
 
 .countdownWrapperAnim {
-  animation: countdownSpanMinify 0.5s forwards; }
+  animation: countdownSpanMinify .5s forwards; }
 
 @keyframes countdownSpanMinify {
   0% {
     color: white; }
   100% {
-    color: #9e001e;
-    font-size: 100px; } }
+    font-size: 100px;
+    color: #9e001e; } }
 
 #gameOver {
-  display: none;
   font-size: 50px;
-  color: white;
   position: fixed;
   top: 0;
   right: 0;
-  left: 0;
   bottom: 0;
-  transition: 0.2s;
-  padding-top: 20vh;
-  text-align: center; }
+  left: 0;
+  display: none;
+  padding-top: 25vh;
+  transition: .2s;
+  text-align: center;
+  color: white;
+  line-height: 1.5;
+  text-shadow: 7px 7px 14px white; }
 
 .inactiveGame canvas {
-  opacity: 0.3; }
+  opacity: .3; }
 
 #firstGameContainer.inactiveGame {
-  box-shadow: inset -270px 0px 170px 65px rgba(0, 0, 0, 0.85); }
+  box-shadow: inset -270px 0 170px 65px rgba(0, 0, 0, 0.85); }
 
 #secondGameContainer.inactiveGame {
-  box-shadow: inset 270px 0px 170px 65px rgba(0, 0, 0, 0.85); }
+  box-shadow: inset 270px 0 170px 65px rgba(0, 0, 0, 0.85); }
 
 #firstGameContainer {
-  box-shadow: inset -150px 0px 170px 30px rgba(253, 150, 150, 0.85); }
+  box-shadow: inset -150px 0 170px 30px rgba(253, 150, 150, 0.85); }
 
 #secondGameContainer {
-  box-shadow: inset 150px 0px 170px 30px rgba(253, 150, 150, 0.85); }
+  box-shadow: inset 150px 0 170px 30px rgba(253, 150, 150, 0.85); }
 
 .screen {
-  height: 100vh;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  border-bottom: 5px solid #636363; }
+  width: 100%;
+  height: 100vh;
+  border-bottom: 5px solid #636363;
+  justify-content: space-between; }
 
 .gameContainer {
-  transition: 0.25s;
   display: flex;
+  transition: .25s;
   justify-content: space-around;
   align-items: center; }
 
-#controllPanel {
+#controlPanel {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center; }
 
 .controls {
+  font-family: inherit;
+  font-size: 25px;
   height: 50px;
   margin-bottom: 25px;
-  transition: 0.3s;
-  font-size: 25px;
-  background: #c1c1c1;
-  border: none;
   cursor: pointer;
-  font-family: inherit; }
+  transition: .3s;
+  border: none;
+  background: #c1c1c1; }
 
 .scoreBoard {
-  border-top: 1px solid #c1c1c1;
-  border-bottom: 1px solid #c1c1c1;
-  text-align: center;
   font-size: 75px;
-  color: #e8e8e8; }
+  text-align: center;
+  color: #e8e8e8;
+  border-top: 1px solid #c1c1c1;
+  border-bottom: 1px solid #c1c1c1; }
 
 .controls:disabled,
 .controls[disabled] {
   cursor: not-allowed;
-  opacity: 0.7; }
+  opacity: .7; }
 
 #controlKeys {
-  display: flex;
+  font-size: 75px;
+  font-weight: bold;
   position: absolute;
+  z-index: 1000;
+  bottom: 40px;
+  display: flex;
   width: 150%;
+  padding: 15px;
+  transition: .3s;
+  transform: translate(-17%, 0) perspective(250px) rotateX(35deg);
+  opacity: .6;
+  border: 2px solid #636363;
+  background: #c1c1c1;
   justify-content: space-between;
   align-content: space-around;
-  flex-wrap: wrap;
-  font-size: 75px;
-  transform: translate(-17%, 0) perspective(250px) rotateX(35deg);
-  font-weight: bold;
-  bottom: 40px;
-  padding: 15px;
-  background: #c1c1c1;
-  border: 2px solid #636363;
-  z-index: 1000; }
+  flex-wrap: wrap; }
   #controlKeys span {
-    border: 2px solid #636363;
     padding: 10px;
-    position: relative;
-    transition: 0.2s; }
+    transition: .2s;
+    border: 3px solid #636363; }
+
+#controlKeys.activeKeyBoard {
+  transform: translate(-17%, -10%) perspective(250px) rotateX(40deg);
+  animation: flyingKeyObject 5s infinite .3s;
+  opacity: 1; }
+
+@keyframes flyingKeyObject {
+  0% {
+    transform: translate(-17%, -10%) perspective(250px) rotateX(40deg); }
+  50% {
+    transform: translate(-17%, -18%) perspective(250px) rotateX(40deg); }
+  100% {
+    transform: translate(-17%, -10%) perspective(250px) rotateX(40deg); } }
 
 #wButton {
+  display: flex;
   width: 100%;
   margin-bottom: 15px;
-  display: flex;
   justify-content: center; }
 
 .activatedControlKey {
-  bottom: -5px;
-  transform: perspective(200px) rotateX(10deg);
-  border: 2px solid blue; }
+  transform: translateY(-5px);
+  color: #c1c1c1;
+  background: #9e001e;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.7); }
 
 .contentBox {
   width: 42.5%; }
 
 .middleLine {
+  width: 15%;
   border-right: 1px solid #636363;
   border-left: 1px solid #636363;
-  width: 15%;
   background: #9e001e; }
+
+#userCanvasContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; }

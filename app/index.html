@@ -14,11 +14,11 @@
 		<div id="firstGameContainer" class="gameContainer inactiveGame contentBox">
 			<canvas id="firstSnakeField"></canvas>
 		</div>
-		<div id="controllPanel" class="middleLine">
+		<div id="controlPanel" class="middleLine">
 			<button id="startButton" class="controls">Start</button>
 			<button id="pauseButton" class="controls" disabled="true">Pause</button>
 			<span id="scoreBoard" class="scoreBoard">0</span>
-			<div id="controlKeys">
+			<div id="controlKeys" class="">
 				<div id="wButton">
 					<span class="wControlKey">W</span>
 				</div>
@@ -28,17 +28,33 @@
 			</div>
 		</div>
 		<div id="secondGameContainer" class="gameContainer inactiveGame contentBox">
-			<canvas id="secondSnakeField"></canvas>
+			<div id="userCanvasWrapper">
+				<canvas id="secondSnakeField"></canvas>
+			</div>
 		</div>
 	</div>
 	<div class="screen" id="settings">
-		
+		<div class="contentBox">
+			
+		</div>
+		<div class="middleLine">
+			<!-- Here's gonna be a masthead and the rules. -->
+		</div>
+		<div class="contentBox" id="userCanvasContainer">
+			<canvas id="userCanvas"></canvas>
+			<button id="userCanvasUndoButton">Undo</button>
+			<button id="userCanvasClearButton">ClearField</button>
+			<button id="userCanvasSubmitButton">Submit</button>
+		</div>
 	</div>
 	<div id="countdown"><span>3</span></div>
 	<div id="gameOver"><span>Sorry dude, you suck</span></div>
 	<!-- MainScript -->
 	<script src="jsNext/vars.js"></script>
 	<script src="jsNext/funcs.js"></script>
+	<script src="jsNext/mainLogic.js"></script>
+	<script src="jsNext/nav.js"></script>
+	<script src="jsNext/userBlocks.js"></script>
 	<script src="jsNext/main.js"></script>
 </body>
 </html>
