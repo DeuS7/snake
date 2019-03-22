@@ -34,24 +34,89 @@
 		</div>
 	</div>
 	<div class="screen" id="settings">
-		<div class="contentBox">
-			
+		<div class="contentBox" id="settingsContainer">
+			<h2 class="comTitle">Settings</h2>
+			<div class="settingsLineWrapper">
+				<!-- <div class="settingsLine">
+					<h3 class="comTitle">Dimension</h3>
+					<div class="radioButtons">
+						<div>
+							<input type="radio" id="more" class="radioButton" name="dimension" value="1"  checked>
+							<label for="more">More</label>
+						</div>
+						<div>
+							<input type="radio" id="less" class="radioButton" name="dimension" value="1.3" >
+							<label for="less">Less</label>
+						</div>
+					</div>
+				</div> -->
+				<div class="settingsLine">
+					<h3 class="comTitle">Step Over Mode</h3>
+					<div class="radioButtons">
+						<div>
+							<input type="radio" id="soft" class="radioButton" name="stepOverMode" value="soft"  checked>
+							<label for="soft">Soft</label>
+						</div>
+						<div>
+							<input type="radio" id="hard" class="radioButton" name="stepOverMode" value="hard" >
+							<label for="hard">Hard</label>
+						</div>
+						<div>
+							<input type="radio" id="stepOver" class="radioButton" name="stepOverMode" value="stepOver" >
+							<label for="stepOver">Step Over</label>
+						</div>
+					</div>
+				</div>
+				<div class="settingsLine">
+					<h3 class="comTitle">Warp Mode</h3>
+					<div class="radioButtons">
+						<div>
+							<input type="radio" id="true" class="radioButton" name="warpMode" value="true"  checked>
+							<label for="true">True</label>
+						</div>
+						<div>
+							<input type="radio" id="false" class="radioButton" name="warpMode" value="false" >
+							<label for="false">False</label>
+						</div>
+					</div>
+				</div>
+				<div class="settingsLine">
+					<h3 class="comTitle">Amount Of Obstacles</h3>
+					<input type="range" name="amountOfObstacles" min="0" max="25" step="1" value="5" class="slider" id="obstsSlider">
+					<div></div>
+				</div>
+				<div class="settingsLine">
+					<h3 class="comTitle">Snake Speed</h3>
+					<input type="range" name="stepDelay" min="50" max="500" step="-1" value="150" class="slider " id="speedSlider">
+					<div></div>
+				</div>
+				<div class="settingsLine">
+					<h3 class="comTitle">Amount of Steps</h3>
+					<input type="range" name="amountOfSteps" min="20" max="120" step="1" value="45" class="slider " id="stepsSlider">
+					<div></div>
+				</div>
+			</div>
 		</div>
 		<div class="middleLine">
 			<!-- Here's gonna be a masthead and the rules. -->
 		</div>
-		<div class="contentBox" id="userCanvasContainer">
+		<div class="contentBox">
 
 		</div>
 	</div>
 	<div id="countdown"><span>3</span></div>
-	<div id="gameOver"><span>Sorry dude, you suck</span></div>
+	<div id="gameOver">
+		<span>Sorry dude, you suck</span>
+		<br>
+		<hr>
+		<span id="contSpan">Press anywhere to continue</span>
+	</div>
 	<!-- MainScript -->
 	<script src="jsNext/vars.js"></script>
 	<script src="jsNext/funcs.js"></script>
+	<script src="jsNext/settings.js"></script>
 	<script src="jsNext/mainLogic.js"></script>
 	<script src="jsNext/nav.js"></script>
-	<script src="jsNext/settings.js"></script>
 	<script src="jsNext/main.js"></script>
 </body>
 </html>

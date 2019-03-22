@@ -23,13 +23,14 @@ var aControlKey = document.getElementsByClassName("aControlKey")[0];
 var sControlKey = document.getElementsByClassName("sControlKey")[0];
 var dControlKey = document.getElementsByClassName("dControlKey")[0];
 
-var dimension = 600;
-const block = 25;
+/*var dimension = 600;
+var block = 25;
 var snakeColor = "crimson";
 var snakeHeadColor = "red";
-var foodColor = "green";
+var foodColor = "#4CAF50";
 var obstacleColor = "grey";
 var stepOverMode = "soft";
+var warpMode = true;*/
 
 //The numbers are relative to some random block. e.g 1|1 means
 //+1 block on each axis is painted. Like this it's easy to 
@@ -41,14 +42,15 @@ var obstacleMaps = {
 	lineMini: ["0|0", "1|0"]
 }
 var sets = {
-	dimension: dimension,
-	block: block,
-	warpMode: true,
-	stepOverMode: stepOverMode,
+	dimension: 600,
+	block: 25,
+	warpMode: "true",
+	stepOverMode: "soft",
 	obstacleMaps: obstacleMaps,
 	amountOfObstacles: 2,
 	playGameDelay: 1500,
 	stepDelay: 100,
+	amountOfSteps: 40,
 	countdownWrapper: countdownWrapper,
 	gameOverWrapper: gameOverWrapper,
 	scoreBoard: scoreBoard,
@@ -57,6 +59,12 @@ var sets = {
 		a: aControlKey,
 		s: sControlKey,
 		d: dControlKey
+	},
+	looseMessages: {
+		wallCollision: "You hit the wall.",
+		obstacleCollision: "You hit the obstacle.",
+		stepOver: "You hit yourself.",
+		basicLooseMessage: "Sorry, dude, you suck."
 	}
 }
 
@@ -65,38 +73,38 @@ var sets = {
 //To show elem. at the center of a block.
 var blockTypes = {
 	snake: {
-		color: snakeColor,
-		segmentWidth: block - 2,
+		color: "crimson",
+		segmentWidth: sets.block - 2,
 		delta: 1
 	},
 	snakeHead: {
-		color: snakeHeadColor,
-		segmentWidth: block - 6,
+		color: "red",
+		segmentWidth: sets.block - 6,
 		delta: 1
 	},
 	snakeTail: {
-		color: snakeColor,
-		segmentWidth: block - 4,
+		color: "crimson",
+		segmentWidth: sets.block - 4,
 		delta: 1
 	},
 	snakeNeck: {
-		color: snakeColor,
-		segmentWidth: block - 4,
+		color: "crimson",
+		segmentWidth: sets.block - 4,
 		delta: 1
 	},
 	food: {
-		color: foodColor,
-		segmentWidth: block,
+		color: "#4CAF50",
+		segmentWidth: sets.block,
 		delta: 1
 	},
 	obstacle: {
-		color: obstacleColor,
-		segmentWidth: block - 2,
+		color: "grey",
+		segmentWidth: sets.block - 2,
 		delta: 1
 	}
 }
 for (var key in blockTypes) {
-	blockTypes[key].delta = (block - blockTypes[key].segmentWidth) / 2;
+	blockTypes[key].delta = (sets.block - blockTypes[key].segmentWidth) / 2;
 }
 
 //We need "Initial Move" so that in the first move player can choose

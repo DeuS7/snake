@@ -53,7 +53,9 @@ function startGame(firstGameCond, secondGameCond, sets, objX) {
 	//Start game is used both after pause and to actually start game first time.
 	//So if it's the first time, randomize total amount of iterations and field
 	if (objX.currentActiveGame == undefined) {
-		objX.totalIterationCount = randInRange(15,30);
+		/*objX.totalIterationCount = randInRange(35,40);*/
+		//Probably better to make it random.
+		objX.totalIterationCount = sets.amountOfSteps;
 
 		//Obivously it's not the best solution, butt it's easy to implement
 		//And that factor is decisive, since I'll barely expand the game to more fields.
@@ -81,7 +83,8 @@ function startGame(firstGameCond, secondGameCond, sets, objX) {
 
 			if (objX.currentIterationCount > objX.totalIterationCount) {
 				objX.currentIterationCount = 0;
-				objX.totalIterationCount = randInRange(15,30);
+				/*objX.totalIterationCount = randInRange(35,40);*/
+				objX.totalIterationCount = sets.amountOfSteps;
 
 				//The moment of switch!
 				var temp = objX.currentInactiveGame;
@@ -124,7 +127,7 @@ function pauseGame(objX) {
 	refreshGameStyles(objX, sets);
 	refreshControlKeysStyles(sets.controlKeys, objX, keyBoard);
 }
-function gameOver(sets, objX) {
+function gameOver(sets, objX, looseReason) {
 	objX.isGameStopped = true;
 
 	refreshGameStyles(objX, sets);
@@ -134,9 +137,13 @@ function gameOver(sets, objX) {
 	sets.gameOverWrapper.classList.add("showWrapper");
 	var span = sets.gameOverWrapper.children[0];
 
-	span.innerHTML = "Sorry, dude, you suck.";
+	span.innerHTML = sets.looseMessages.basicLooseMessage;
+	span.innerHTML += '\n';
+	span.innerHTML += sets.looseMessages[looseReason];
 	span.innerHTML += " Your score is " + objX.currentScore;
-	span.innerHTML += " Press anywhere to continue";
+
+	objX.currentActiveGame = undefined;
+	objX.currentInactiveGame = undefined;
 }
 
 

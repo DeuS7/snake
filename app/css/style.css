@@ -1,3 +1,11 @@
+h2.comTitle {
+  font-size: 40px; }
+
+h3.comTitle {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 15px; }
+
 body {
   font-family: 'Stalinist One', cursive;
   background: #c1c1c1; }
@@ -46,8 +54,17 @@ canvas {
   transition: .2s;
   text-align: center;
   color: white;
-  line-height: 1.5;
-  text-shadow: 2px 2px 14px white; }
+  line-height: 1.5; }
+  #gameOver span {
+    white-space: pre-line; }
+  #gameOver span#contSpan {
+    animation: blinkingShadow 1s alternate infinite; }
+
+@keyframes blinkingShadow {
+  from {
+    text-shadow: 2px 2px 5px white; }
+  to {
+    text-shadow: 2px 2px 14px white; } }
 
 .inactiveGame canvas {
   opacity: .3; }
@@ -162,3 +179,99 @@ canvas {
   border-left: 1px solid #636363;
   background: #9e001e;
   box-shadow: 0 0 25px 0px black; }
+
+#settingsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.settingsLine {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.settingsLineWrapper {
+  width: 85%;
+  border: 2px solid crimson; }
+
+.radioButtons {
+  user-select: none;
+  display: flex;
+  justify-content: center; }
+
+.radioButton {
+  display: none; }
+  .radioButton + label {
+    cursor: pointer;
+    display: block;
+    padding: 5px 15px;
+    border: 2px solid crimson; }
+  .radioButton:checked + label {
+    background: crimson;
+    color: #c1c1c1; }
+
+.slider {
+  width: 80%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  background: crimson;
+  outline: none;
+  transition: 0.2s;
+  position: relative;
+  font-family: inherit; }
+  .slider:before {
+    content: attr(min);
+    position: absolute;
+    top: 0;
+    right: 101%;
+    color: black; }
+  .slider:after {
+    content: attr(max);
+    position: absolute;
+    top: 0;
+    left: 101%;
+    color: black; }
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+  transition: 0.2s; }
+  .slider::-webkit-slider-thumb:active {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.7); }
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+  transition: 0.2s; }
+  .slider::-moz-range-thumb:active {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.7); }
+
+#speedSlider {
+  direction: rtl; }
+  #speedSlider:before {
+    content: "Faster";
+    right: 10px;
+    top: 25px; }
+  #speedSlider:after {
+    content: "Slower";
+    left: 10px;
+    top: 25px; }
+
+#stepsSlider:before {
+  content: "More";
+  right: 10px;
+  top: 25px; }
+
+#stepsSlider:after {
+  content: "Less";
+  left: 10px;
+  top: 25px; }

@@ -160,7 +160,10 @@ function clearField(field, sets) {
 }
 
 
-function animate(gameCond, sets, objX) {/*
+function animate(gameCond, sets, objX) {
+    /*
+    This was needed to make snake stay still at the very beginning
+    But is deprecated, because counting wrapper was added.
     if (gameCond.currentDirection == "initialMove") {
         return;
     }*/
@@ -172,22 +175,22 @@ function animate(gameCond, sets, objX) {/*
 
     if (objX.currentDirection == "Up") {
         var newX = headCoord[0];
-        var newY = headCoord[1] - block;
+        var newY = headCoord[1] - sets.block;
     }
     if (objX.currentDirection == "Left") {
-        var newX = headCoord[0] - block;
+        var newX = headCoord[0] - sets.block;
         var newY = headCoord[1];
     }
     if (objX.currentDirection == "Down") {
         var newX = headCoord[0];
-        var newY = headCoord[1] + block;
+        var newY = headCoord[1] + sets.block;
     }
     if (objX.currentDirection == "Right") {
-        var newX = headCoord[0] + block;
+        var newX = headCoord[0] + sets.block;
         var newY = headCoord[1];
     }
 
-    if (sets.warpMode) {
+    if (sets.warpMode == "true") {
         newX %= sets.dimension;
         newY %= sets.dimension;
         if (newX < 0) {
@@ -196,11 +199,12 @@ function animate(gameCond, sets, objX) {/*
         if (newY < 0) {
             newY = sets.dimension - sets.block;
         }
-    } else if (newX < 0 || newX > gameCond.dimension
-        || newY < 0 || newY > gameCond.dimension) {
-        gameOver(sets, objX);
+    } else if (newX < 0 || newX > sets.dimension-sets.block
+        || newY < 0 || newY > sets.dimension-sets.block) {
+        gameOver(sets, objX, 'wallCollision');
         return;
     }
+
     if (sets.stepOverMode != "stepOver") {
         var indexOfSegmentAt = isOnSnake([newX, newY], gameCond);
 
@@ -209,13 +213,13 @@ function animate(gameCond, sets, objX) {/*
                 gameCond.snake.splice(indexOfSegmentAt);
             } 
             if (sets.stepOverMode == "hard") {
-                gameOver(sets, objX);
+                gameOver(sets, objX, 'stepOver');
                 return;
             }
         }
     }
     if (isOnObstacle([newX, newY], gameCond)) {
-        gameOver(sets, objX);
+        gameOver(sets, objX, 'obstacleCollision');
         return;
     }
 
@@ -236,6 +240,31 @@ function animate(gameCond, sets, objX) {/*
 
 
 
+
+
 function getProperType(x) {
   return Object.prototype.toString.call(x).slice(8, -1);
+}
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
 }
