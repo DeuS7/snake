@@ -44,5 +44,8 @@ var processorFuncs = {
 	},
 	amountOfSteps: function(value, sets) {
 		sets.amountOfSteps = value; 
+	},
+	displayKeyboard: function(value, sets) {
+		sets.displayKeyboard = value;
 	}
 }

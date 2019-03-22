@@ -71,6 +71,8 @@ canvas {
 
 	line-height: 1.5;
 
+	cursor: pointer;
+
 	span {
 		white-space: pre-line;
 	}
@@ -120,12 +122,7 @@ canvas {
 }
 
 .gameContainer {
-	display: flex;
-
 	transition: .25s;
-
-	justify-content: space-around;
-	align-items: center;
 }
 #controlPanel {
 	position: relative;
@@ -171,6 +168,7 @@ canvas {
 
 
 #controlKeys {
+
 	font-size: 75px;
 	font-weight: bold;
 
@@ -178,7 +176,7 @@ canvas {
 	z-index: 1000;
 	bottom: 40px;
 
-	display: flex;
+	display: none;
 
 	width: 150%;
 	padding: 15px;
@@ -200,6 +198,10 @@ canvas {
 		transition: .2s;
 
 		border: 3px solid $subColor;
+	}
+
+	&.visible {
+		display: flex;
 	}
 }
 #controlKeys.activeKeyBoard {
@@ -238,10 +240,6 @@ canvas {
 
 
 
-.contentBox {
-	width: 42.5%;
-}
-
 .middleLine {
 	width: 15%;
 
@@ -251,8 +249,19 @@ canvas {
 
 	box-shadow: 0 0 25px 0px black;
 }
-
+#settings {
+	position: relative;
+}
 #settingsContainer {
+	/* display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center; */
+}
+.contentBox {
+	width: 42.5%;
+
+	//????? Maybe return to up
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -266,7 +275,7 @@ canvas {
 	flex-direction: column;
 	align-items: center;
 }
-.settingsLineWrapper {
+.contentWrapper {
 	width: 85%;
 	border: 2px solid crimson;
 }
@@ -367,3 +376,78 @@ canvas {
 		top: 25px;
 	}
 }
+
+#aboutGameInfo {
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	transition: opacity 0.3s, width 0.3s 0.5s;
+	opacity: 0;
+}
+#aboutGameInfo.active {
+	width: 25%;
+	opacity: 1;
+	//Finish SHADOW!
+	//Flying effect!
+	box-shadow: 0 0 45px 5px black;
+}
+#showInfoCloseButton {
+		font-size: 25px;
+		background: $mainBackColor;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		padding: 10px;
+		cursor: pointer;
+	}
+.middleWithText {
+	padding: 15px;
+}
+
+.infoSectionWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.showInfoButton {
+	width: 40%;
+	height: 50px;
+	padding: 5px;
+	border: 2px solid crimson;
+	margin: 10px;
+	transition: 0.3s;
+	cursor: pointer;
+	padding-left: 45px;
+	position: relative;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: center left 5px;
+	&:after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background-color: crimson;
+		top: 0;
+		right: -40px;
+		transition: 0.3s;
+		z-index: -100;
+	}
+	&:hover:after {
+		right: 0;
+	}
+	&:hover {
+		color: $mainBackColor;
+	}
+}
+#aboutGameInfoTextContent {
+	margin-top: 30px;
+}
+
+//Icons?
+/* .showInfoButton.abtBtn {
+	background-image: url(../images/about-32.png);
+} */

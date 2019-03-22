@@ -41,6 +41,12 @@ var obstacleMaps = {
 	lineVer: ["0|0", "0|1", "0|2", "0|3"],
 	lineMini: ["0|0", "1|0"]
 }
+var aboutInfo = {
+	about: "Just some game",
+	warpMode: "That is how it works...",
+	stepOverMode: "And this works like this",
+	test: "Just a test. Very long string, by the way."
+}
 var sets = {
 	dimension: 600,
 	block: 25,
@@ -51,6 +57,7 @@ var sets = {
 	playGameDelay: 1500,
 	stepDelay: 100,
 	amountOfSteps: 40,
+	displayKeyboard: "true",
 	countdownWrapper: countdownWrapper,
 	gameOverWrapper: gameOverWrapper,
 	scoreBoard: scoreBoard,
@@ -60,6 +67,7 @@ var sets = {
 		s: sControlKey,
 		d: dControlKey
 	},
+	keyBoard: keyBoard,
 	looseMessages: {
 		wallCollision: "You hit the wall.",
 		obstacleCollision: "You hit the obstacle.",

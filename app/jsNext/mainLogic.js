@@ -1,4 +1,7 @@
 function initGame(firstGameCond, secondGameCond, sets, objX) {
+	if (sets.displayKeyboard == "true") {
+		sets.keyBoard.classList.add("visible");
+	}
 	emptyGameConditions(firstGameCond, objX);
 	emptyGameConditions(secondGameCond, objX);
 
@@ -69,7 +72,7 @@ function startGame(firstGameCond, secondGameCond, sets, objX) {
 	}
 
 	refreshGameStyles(objX, sets);
-	refreshControlKeysStyles(sets.controlKeys, objX, keyBoard);
+	refreshControlKeysStyles(sets.controlKeys, objX, sets);
 	showCountdown(sets);
 	
 	setTimeout(function() {
@@ -125,13 +128,13 @@ function pauseGame(objX) {
 	objX.isGameStopped = true;
 
 	refreshGameStyles(objX, sets);
-	refreshControlKeysStyles(sets.controlKeys, objX, keyBoard);
+	refreshControlKeysStyles(sets.controlKeys, objX, sets);
 }
 function gameOver(sets, objX, looseReason) {
 	objX.isGameStopped = true;
 
 	refreshGameStyles(objX, sets);
-	refreshControlKeysStyles(sets.controlKeys, objX, keyBoard);
+	refreshControlKeysStyles(sets.controlKeys, objX, sets);
 	toggleControlButton(startButton);
 
 	sets.gameOverWrapper.classList.add("showWrapper");
@@ -195,13 +198,16 @@ function toggleControlButton(button) {
 		pauseStart[button.id].disabled = false;
 	}
 }
-function refreshControlKeysStyles(keys, objX, keyBoard) {
+function refreshControlKeysStyles(keys, objX, sets) {
+	if (sets.displayKeyboard == "false") {
+		return;
+	}
 	for (var key in keys) {
 		keys[key].classList.remove("activatedControlKey");
 	}
 	if (objX.isGameStopped) {
-		keyBoard.classList.remove("activeKeyBoard");
+		sets.keyBoard.classList.remove("activeKeyBoard");
 	} else {
-		keyBoard.classList.add("activeKeyBoard");
+		sets.keyBoard.classList.add("activeKeyBoard");
 	}
 }

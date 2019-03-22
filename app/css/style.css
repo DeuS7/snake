@@ -54,7 +54,8 @@ canvas {
   transition: .2s;
   text-align: center;
   color: white;
-  line-height: 1.5; }
+  line-height: 1.5;
+  cursor: pointer; }
   #gameOver span {
     white-space: pre-line; }
   #gameOver span#contSpan {
@@ -89,10 +90,7 @@ canvas {
   justify-content: space-between; }
 
 .gameContainer {
-  display: flex;
-  transition: .25s;
-  justify-content: space-around;
-  align-items: center; }
+  transition: .25s; }
 
 #controlPanel {
   position: relative;
@@ -129,7 +127,7 @@ canvas {
   position: absolute;
   z-index: 1000;
   bottom: 40px;
-  display: flex;
+  display: none;
   width: 150%;
   padding: 15px;
   transition: .3s;
@@ -144,6 +142,8 @@ canvas {
     padding: 10px;
     transition: .2s;
     border: 3px solid #636363; }
+  #controlKeys.visible {
+    display: flex; }
 
 #controlKeys.activeKeyBoard {
   transform: translate(-17%, -10%) perspective(250px) rotateX(40deg);
@@ -170,9 +170,6 @@ canvas {
   background: #9e001e;
   box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.7); }
 
-.contentBox {
-  width: 42.5%; }
-
 .middleLine {
   width: 15%;
   border-right: 1px solid #636363;
@@ -180,7 +177,17 @@ canvas {
   background: #9e001e;
   box-shadow: 0 0 25px 0px black; }
 
+#settings {
+  position: relative; }
+
 #settingsContainer {
+  /* display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center; */ }
+
+.contentBox {
+  width: 42.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -192,7 +199,7 @@ canvas {
   flex-direction: column;
   align-items: center; }
 
-.settingsLineWrapper {
+.contentWrapper {
   width: 85%;
   border: 2px solid crimson; }
 
@@ -275,3 +282,70 @@ canvas {
   content: "Less";
   left: 10px;
   top: 25px; }
+
+#aboutGameInfo {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  transition: opacity 0.3s, width 0.3s 0.5s;
+  opacity: 0; }
+
+#aboutGameInfo.active {
+  width: 25%;
+  opacity: 1;
+  box-shadow: 0 0 45px 5px black; }
+
+#showInfoCloseButton {
+  font-size: 25px;
+  background: #c1c1c1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  cursor: pointer; }
+
+.middleWithText {
+  padding: 15px; }
+
+.infoSectionWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+.showInfoButton {
+  width: 40%;
+  height: 50px;
+  padding: 5px;
+  border: 2px solid crimson;
+  margin: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  padding-left: 45px;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center left 5px; }
+  .showInfoButton:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: crimson;
+    top: 0;
+    right: -40px;
+    transition: 0.3s;
+    z-index: -100; }
+  .showInfoButton:hover:after {
+    right: 0; }
+  .showInfoButton:hover {
+    color: #c1c1c1; }
+
+#aboutGameInfoTextContent {
+  margin-top: 30px; }
+
+/* .showInfoButton.abtBtn {
+	background-image: url(../images/about-32.png);
+} */

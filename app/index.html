@@ -34,22 +34,14 @@
 		</div>
 	</div>
 	<div class="screen" id="settings">
+		<div class="middleLine middleWithText" id="aboutGameInfo">
+			<div id="showInfoCloseButton">x</div>
+			<h3 class="comTitle">Info</h3>
+			<p id="aboutGameInfoTextContent"></p>
+		</div>
 		<div class="contentBox" id="settingsContainer">
 			<h2 class="comTitle">Settings</h2>
-			<div class="settingsLineWrapper">
-				<!-- <div class="settingsLine">
-					<h3 class="comTitle">Dimension</h3>
-					<div class="radioButtons">
-						<div>
-							<input type="radio" id="more" class="radioButton" name="dimension" value="1"  checked>
-							<label for="more">More</label>
-						</div>
-						<div>
-							<input type="radio" id="less" class="radioButton" name="dimension" value="1.3" >
-							<label for="less">Less</label>
-						</div>
-					</div>
-				</div> -->
+			<div class="contentWrapper">
 				<div class="settingsLine">
 					<h3 class="comTitle">Step Over Mode</h3>
 					<div class="radioButtons">
@@ -71,12 +63,25 @@
 					<h3 class="comTitle">Warp Mode</h3>
 					<div class="radioButtons">
 						<div>
-							<input type="radio" id="true" class="radioButton" name="warpMode" value="true"  checked>
-							<label for="true">True</label>
+							<input type="radio" id="trueWarp" class="radioButton" name="warpMode" value="true"  checked>
+							<label for="trueWarp">True</label>
 						</div>
 						<div>
-							<input type="radio" id="false" class="radioButton" name="warpMode" value="false" >
-							<label for="false">False</label>
+							<input type="radio" id="falseWarp" class="radioButton" name="warpMode" value="false" >
+							<label for="falseWarp">False</label>
+						</div>
+					</div>
+				</div>
+				<div class="settingsLine">
+					<h3 class="comTitle">Display Keyboard</h3>
+					<div class="radioButtons">
+						<div>
+							<input type="radio" id="trueKey" class="radioButton" name="displayKeyboard" value="true"  checked>
+							<label for="trueKey">True</label>
+						</div>
+						<div>
+							<input type="radio" id="falseKey" class="radioButton" name="displayKeyboard" value="false" >
+							<label for="falseKey">False</label>
 						</div>
 					</div>
 				</div>
@@ -97,11 +102,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="middleLine">
-			<!-- Here's gonna be a masthead and the rules. -->
+		<div class="middleLine middleWithText">
+			<h3 class="comTitle">Masthead?</h3>
+			<p>Created by DeuS7 with the purpose of pure self development</p>
 		</div>
 		<div class="contentBox">
-
+			<h2 class="comTitle">About the Game</h2>
+			<div class="contentWrapper infoSectionWrapper">
+				<div class="showInfoButton abtBtn" data-info="about">About</div>
+				<div class="showInfoButton" data-info="warpMode">Warp Mode</div>
+				<div class="showInfoButton" data-info="stepOverMode">Step Over mode</div>
+				<div class="showInfoButton" data-info="amountOfSteps">Amount of Steps</div>
+				<div class="showInfoButton" data-info="settings">Settings</div>
+			</div>
 		</div>
 	</div>
 	<div id="countdown"><span>3</span></div>
@@ -109,7 +122,7 @@
 		<span>Sorry dude, you suck</span>
 		<br>
 		<hr>
-		<span id="contSpan">Press anywhere to continue</span>
+		<span id="contSpan">Click anywhere to continue</span>
 	</div>
 	<!-- MainScript -->
 	<script src="jsNext/vars.js"></script>
@@ -117,6 +130,7 @@
 	<script src="jsNext/settings.js"></script>
 	<script src="jsNext/mainLogic.js"></script>
 	<script src="jsNext/nav.js"></script>
+	<script src="jsNext/about.js"></script>
 	<script src="jsNext/main.js"></script>
 </body>
 </html>
