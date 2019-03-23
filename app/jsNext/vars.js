@@ -42,14 +42,19 @@ var obstacleMaps = {
 	lineMini: ["0|0", "1|0"]
 }
 var aboutInfo = {
-	about: "Just some game",
-	warpMode: "That is how it works...",
-	stepOverMode: "And this works like this",
-	test: "Just a test. Very long string, by the way."
+	about: "<p>The purpose of the game is quite clear. It's a simple snake game, where you eat food for growing and avoid unwanted actions (More about them in further sections). The game will continue untill you lose.</p>",
+	twoFields: " <p>Two fields is a useless idea of mine, which was only thought of and created! since I wanted to write snake, but with more complexity. </p> <p>This might though be quite of use for some reaction training. </p><p> This is how it works: you chose number of steps, and game switches the fields every N steps. As of now no random.</p>",  
+	warpMode: "<p>Warp mode is responsible for whether the field is cycled or not. If the setting is 'True', when you hit the wall, you just appear from the opposite wall, as if it was a portal.</p>",
+	stepOverMode: "<p> Step Over Mode is a setting, responsible for how the snake interacts with itself.</p><p>Soft means, that it just bites off part of it's body, but you can continue the game</p><p>Hard - you just lose instantly</p><p>Step Over - nothing happens, you can go anywhere, aside from backwards</p>",
+	amountOfSteps: "<p>With this setting you can chose approximate amount of steps per turn.</p><p>Just like with Snake Speed, I didn't want to write exact numbers, since the whole point of the game was abruptness of process. You should learn to 'feel', when the switch is going to happen</p><p>Also it's very interesting to risk those last couple of steps for food, which may be fatal, if the other snake is headed towards the obstacle.</p>",
+	switchRules: "<p>As already mentioned, the switch happens every N steps. When the switch happens, the direction is saved, which means, for instance, that if one snake is headed down, after switch the other will be too, even if before it was headed in different direction. The only exception is that the snake obviously can't go backwards</p>",
+	notes: "Note!"
 }
+//"true" - one of the stupidest things I've ever done. Agree on that.
 var sets = {
 	dimension: 600,
 	block: 25,
+	minFieldMargin: 50,
 	warpMode: "true",
 	stepOverMode: "soft",
 	obstacleMaps: obstacleMaps,

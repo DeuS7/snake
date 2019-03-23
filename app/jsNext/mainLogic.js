@@ -211,3 +211,11 @@ function refreshControlKeysStyles(keys, objX, sets) {
 		sets.keyBoard.classList.add("activeKeyBoard");
 	}
 }
+
+function adjustFieldsSize(sets) {
+	var contentBoxWidth = firstGameContainer.clientWidth - 2*sets.minFieldMargin;
+
+	while(sets.dimension > contentBoxWidth) {
+		sets.dimension -= sets.block;
+	}
+}

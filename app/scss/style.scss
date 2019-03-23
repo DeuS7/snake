@@ -261,7 +261,6 @@ canvas {
 .contentBox {
 	width: 42.5%;
 
-	//????? Maybe return to up
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -405,6 +404,10 @@ canvas {
 	}
 .middleWithText {
 	padding: 15px;
+	p {
+		margin-bottom: 10px;
+		text-indent: 25px;
+	}
 }
 
 .infoSectionWrapper {

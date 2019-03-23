@@ -1,7 +1,6 @@
 var lastWheelEventTime = 0;
 
 window.addEventListener("wheel", function(e){
-	e.preventDefault();
 	if (performance.now() - lastWheelEventTime < 200) {
 		return;
 	}

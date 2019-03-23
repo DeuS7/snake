@@ -43,6 +43,6 @@ document.addEventListener("keydown", function(e) {
         }
     })
 
-
+adjustFieldsSize(sets);
 
 initGame(firstGameCond, secondGameCond, sets, objX);
