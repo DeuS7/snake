@@ -8,6 +8,7 @@ h3.comTitle {
 
 body {
   font-family: 'Stalinist One', cursive;
+  line-height: 1.1;
   background: #c1c1c1; }
 
 canvas {
@@ -44,6 +45,7 @@ canvas {
 
 #gameOver {
   font-size: 50px;
+  line-height: 1.5;
   position: fixed;
   top: 0;
   right: 0;
@@ -51,11 +53,10 @@ canvas {
   left: 0;
   display: none;
   padding-top: 25vh;
+  cursor: pointer;
   transition: .2s;
   text-align: center;
-  color: white;
-  line-height: 1.5;
-  cursor: pointer; }
+  color: white; }
   #gameOver span {
     white-space: pre-line; }
   #gameOver span#contSpan {
@@ -175,7 +176,7 @@ canvas {
   border-right: 1px solid #636363;
   border-left: 1px solid #636363;
   background: #9e001e;
-  box-shadow: 0 0 25px 0px black; }
+  box-shadow: 0 0 25px 0 black; }
 
 #settings {
   position: relative; }
@@ -187,16 +188,16 @@ canvas {
 	justify-content: center; */ }
 
 .contentBox {
-  width: 42.5%;
   display: flex;
   flex-direction: column;
+  width: 42.5%;
   align-items: center;
   justify-content: center; }
 
 .settingsLine {
-  margin: 25px 0;
   display: flex;
   flex-direction: column;
+  margin: 25px 0;
   align-items: center; }
 
 .contentWrapper {
@@ -204,111 +205,112 @@ canvas {
   border: 2px solid crimson; }
 
 .radioButtons {
-  user-select: none;
   display: flex;
+  user-select: none;
   justify-content: center; }
 
 .radioButton {
   display: none; }
   .radioButton + label {
-    cursor: pointer;
     display: block;
     padding: 5px 15px;
+    cursor: pointer;
     border: 2px solid crimson; }
   .radioButton:checked + label {
-    background: crimson;
-    color: #c1c1c1; }
+    color: #c1c1c1;
+    background: crimson; }
 
 .slider {
-  width: 80%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 20px;
-  background: crimson;
-  outline: none;
-  transition: 0.2s;
+  font-family: inherit;
   position: relative;
-  font-family: inherit; }
+  width: 80%;
+  height: 20px;
+  transition: .2s;
+  outline: none;
+  background: crimson;
+  -webkit-appearance: none;
+  appearance: none; }
   .slider:before {
-    content: attr(min);
     position: absolute;
     top: 0;
     right: 101%;
+    content: attr(min);
     color: black; }
   .slider:after {
-    content: attr(max);
     position: absolute;
     top: 0;
     left: 101%;
+    content: attr(max);
     color: black; }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
   width: 25px;
   height: 25px;
-  background: #4CAF50;
   cursor: pointer;
-  transition: 0.2s; }
+  transition: .2s;
+  background: #4caf50;
+  -webkit-appearance: none;
+  appearance: none; }
   .slider::-webkit-slider-thumb:active {
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.7); }
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.7); }
 
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: #4CAF50;
   cursor: pointer;
-  transition: 0.2s; }
+  transition: .2s;
+  background: #4caf50; }
   .slider::-moz-range-thumb:active {
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.7); }
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.7); }
 
 #speedSlider {
   direction: rtl; }
   #speedSlider:before {
-    content: "Faster";
+    top: 25px;
     right: 10px;
-    top: 25px; }
+    content: 'Faster'; }
   #speedSlider:after {
-    content: "Slower";
+    top: 25px;
     left: 10px;
-    top: 25px; }
+    content: 'Slower'; }
 
 #stepsSlider:before {
-  content: "More";
+  top: 25px;
   right: 10px;
-  top: 25px; }
+  content: 'More'; }
 
 #stepsSlider:after {
-  content: "Less";
+  top: 25px;
   left: 10px;
-  top: 25px; }
+  content: 'Less'; }
 
 #aboutGameInfo {
   position: absolute;
   z-index: 1000;
   top: 0;
-  left: 50%;
   bottom: 0;
+  left: 50%;
+  transition: opacity .3s, width .4s .5s, box-shadow .7s .5s;
   transform: translateX(-50%);
-  transition: opacity 0.3s, width 0.3s 0.5s;
   opacity: 0; }
 
 #aboutGameInfo.active {
   width: 25%;
   opacity: 1;
-  box-shadow: 0 0 45px 5px black; }
+  box-shadow: 0 0 70px 30px black; }
 
 #showInfoCloseButton {
   font-size: 25px;
-  background: #c1c1c1;
   position: absolute;
   top: 10px;
   right: 10px;
   padding: 10px;
-  cursor: pointer; }
+  cursor: pointer;
+  background: #c1c1c1; }
 
 .middleWithText {
-  padding: 15px; }
+  padding: 15px;
+  padding-top: 30px; }
   .middleWithText p {
     margin-bottom: 10px;
     text-indent: 25px; }
@@ -319,28 +321,28 @@ canvas {
   justify-content: space-around; }
 
 .showInfoButton {
-  width: 40%;
-  height: 50px;
-  padding: 5px;
-  border: 2px solid crimson;
-  margin: 10px;
-  transition: 0.3s;
-  cursor: pointer;
-  padding-left: 45px;
   position: relative;
   overflow: hidden;
+  width: 40%;
+  height: 50px;
+  margin: 10px;
+  padding: 5px;
+  padding-left: 45px;
+  cursor: pointer;
+  transition: .3s;
+  border: 2px solid crimson;
   background-repeat: no-repeat;
   background-position: center left 5px; }
   .showInfoButton:after {
-    content: "";
-    width: 100%;
-    height: 100%;
     position: absolute;
-    background-color: crimson;
+    z-index: -100;
     top: 0;
     right: -40px;
-    transition: 0.3s;
-    z-index: -100; }
+    width: 100%;
+    height: 100%;
+    content: '';
+    transition: .3s;
+    background-color: crimson; }
   .showInfoButton:hover:after {
     right: 0; }
   .showInfoButton:hover {

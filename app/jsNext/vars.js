@@ -48,7 +48,7 @@ var aboutInfo = {
 	stepOverMode: "<p> Step Over Mode is a setting, responsible for how the snake interacts with itself.</p><p>Soft means, that it just bites off part of it's body, but you can continue the game</p><p>Hard - you just lose instantly</p><p>Step Over - nothing happens, you can go anywhere, aside from backwards</p>",
 	amountOfSteps: "<p>With this setting you can chose approximate amount of steps per turn.</p><p>Just like with Snake Speed, I didn't want to write exact numbers, since the whole point of the game was abruptness of process. You should learn to 'feel', when the switch is going to happen</p><p>Also it's very interesting to risk those last couple of steps for food, which may be fatal, if the other snake is headed towards the obstacle.</p>",
 	switchRules: "<p>As already mentioned, the switch happens every N steps. When the switch happens, the direction is saved, which means, for instance, that if one snake is headed down, after switch the other will be too, even if before it was headed in different direction. The only exception is that the snake obviously can't go backwards</p>",
-	notes: "Note!"
+	notes: "<p>Note that some settings may need reloading/losing to take effect</p><p>At the initial move you can chose every direction. You have about 1.5 seconds to make a decision.</p>"
 }
 //"true" - one of the stupidest things I've ever done. Agree on that.
 var sets = {
