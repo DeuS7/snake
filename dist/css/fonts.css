@@ -1,0 +1,19 @@
+/*!
+ * DeuS7
+ * field v1.0.0
+ * 
+ * (c) 2019 
+ * ISC License
+ */
+
+@font-face {
+    font-family: 'Stalinist One';
+    src: url('../fonts/Stalinist_One/StalinistOne-Regular.eot');
+    src: url('../fonts/Stalinist_One/StalinistOne-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Stalinist_One/StalinistOne-Regular.woff2') format('woff2'),
+        url('../fonts/Stalinist_One/StalinistOne-Regular.woff') format('woff'),
+        url('../fonts/Stalinist_One/StalinistOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
