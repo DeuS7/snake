@@ -1,18 +1,22 @@
 h2.comTitle {
-  font-size: 40px; }
+  font-size: 40px;
+}
 
 h3.comTitle {
   font-size: 25px;
   text-align: center;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+}
 
 body {
   font-family: 'Stalinist One', cursive;
   line-height: 1.1;
-  background: #c1c1c1; }
+  background: #c1c1c1;
+}
 
 canvas {
-  border: 5px solid #9e001e; }
+  border: 5px solid #9e001e;
+}
 
 #countdown {
   position: fixed;
@@ -23,25 +27,33 @@ canvas {
   display: none;
   padding-top: 20vh;
   transition: .2s;
-  text-align: center; }
-  #countdown span {
-    font-size: 250px;
-    transform-origin: center;
-    color: white; }
+  text-align: center;
+}
+
+#countdown span {
+  font-size: 250px;
+  transform-origin: center;
+  color: white;
+}
 
 .showWrapper {
   display: block !important;
-  background: rgba(0, 0, 0, 0.8); }
+  background: rgba(0, 0, 0, 0.8);
+}
 
 .countdownWrapperAnim {
-  animation: countdownSpanMinify .5s forwards; }
+  animation: countdownSpanMinify .5s forwards;
+}
 
 @keyframes countdownSpanMinify {
   0% {
-    color: white; }
+    color: white;
+  }
   100% {
     font-size: 100px;
-    color: #9e001e; } }
+    color: #9e001e;
+  }
+}
 
 #gameOver {
   font-size: 50px;
@@ -56,48 +68,64 @@ canvas {
   cursor: pointer;
   transition: .2s;
   text-align: center;
-  color: white; }
-  #gameOver span {
-    white-space: pre-line; }
-  #gameOver span#contSpan {
-    animation: blinkingShadow 1s alternate infinite; }
+  color: white;
+}
+
+#gameOver span {
+  white-space: pre-line;
+}
+
+#gameOver span#contSpan {
+  animation: blinkingShadow 1s alternate infinite;
+}
 
 @keyframes blinkingShadow {
   from {
-    text-shadow: 2px 2px 5px white; }
+    text-shadow: 2px 2px 5px white;
+  }
   to {
-    text-shadow: 2px 2px 14px white; } }
+    text-shadow: 2px 2px 14px white;
+  }
+}
 
 .inactiveGame canvas {
-  opacity: .3; }
+  opacity: .3;
+}
 
 #firstGameContainer.inactiveGame {
-  box-shadow: inset -270px 0 170px 65px rgba(0, 0, 0, 0.85); }
+  box-shadow: inset -270px 0 170px 65px rgba(0, 0, 0, 0.85);
+}
 
 #secondGameContainer.inactiveGame {
-  box-shadow: inset 270px 0 170px 65px rgba(0, 0, 0, 0.85); }
+  box-shadow: inset 270px 0 170px 65px rgba(0, 0, 0, 0.85);
+}
 
 #firstGameContainer {
-  box-shadow: inset -150px 0 170px 30px rgba(253, 150, 150, 0.85); }
+  box-shadow: inset -150px 0 170px 30px rgba(253, 150, 150, 0.85);
+}
 
 #secondGameContainer {
-  box-shadow: inset 150px 0 170px 30px rgba(253, 150, 150, 0.85); }
+  box-shadow: inset 150px 0 170px 30px rgba(253, 150, 150, 0.85);
+}
 
 .screen {
   display: flex;
   width: 100%;
   height: 100vh;
   border-bottom: 5px solid #636363;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .gameContainer {
-  transition: .25s; }
+  transition: .25s;
+}
 
 #controlPanel {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .controls {
   font-family: inherit;
@@ -108,19 +136,22 @@ canvas {
   transition: .3s;
   border: none;
   background: #c1c1c1;
-  text-shadow: 2px 2px 7px black; }
+  text-shadow: 2px 2px 7px black;
+}
 
 .scoreBoard {
   font-size: 75px;
   text-align: center;
   color: #e8e8e8;
   border-top: 1px solid #c1c1c1;
-  border-bottom: 1px solid #c1c1c1; }
+  border-bottom: 1px solid #c1c1c1;
+}
 
 .controls:disabled,
 .controls[disabled] {
   cursor: not-allowed;
-  opacity: .7; }
+  opacity: .7;
+}
 
 #controlKeys {
   font-size: 75px;
@@ -138,87 +169,111 @@ canvas {
   background: #c1c1c1;
   justify-content: space-between;
   align-content: space-around;
-  flex-wrap: wrap; }
-  #controlKeys span {
-    padding: 10px;
-    transition: .2s;
-    border: 3px solid #636363; }
-  #controlKeys.visible {
-    display: flex; }
+  flex-wrap: wrap;
+}
+
+#controlKeys span {
+  padding: 10px;
+  transition: .2s;
+  border: 3px solid #636363;
+}
+
+#controlKeys.visible {
+  display: flex;
+}
 
 #controlKeys.activeKeyBoard {
   transform: translate(-17%, -10%) perspective(250px) rotateX(40deg);
   animation: flyingKeyObject 5s infinite .3s;
-  opacity: 1; }
+  opacity: 1;
+}
 
 @keyframes flyingKeyObject {
   0% {
-    transform: translate(-17%, -10%) perspective(250px) rotateX(40deg); }
+    transform: translate(-17%, -10%) perspective(250px) rotateX(40deg);
+  }
   50% {
-    transform: translate(-17%, -18%) perspective(250px) rotateX(40deg); }
+    transform: translate(-17%, -18%) perspective(250px) rotateX(40deg);
+  }
   100% {
-    transform: translate(-17%, -10%) perspective(250px) rotateX(40deg); } }
+    transform: translate(-17%, -10%) perspective(250px) rotateX(40deg);
+  }
+}
 
 #wButton {
   display: flex;
   width: 100%;
   margin-bottom: 15px;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .activatedControlKey {
   transform: translateY(-5px);
   color: #c1c1c1;
   background: #9e001e;
-  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.7); }
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.7);
+}
 
 .middleLine {
   width: 15%;
   border-right: 1px solid #636363;
   border-left: 1px solid #636363;
   background: #9e001e;
-  box-shadow: 0 0 25px 0 black; }
+  box-shadow: 0 0 25px 0 black;
+}
 
 #settings {
-  position: relative; }
+  position: relative;
+}
 
 #settingsContainer {
   /* display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center; */ }
+	justify-content: center; */
+}
 
 .contentBox {
   display: flex;
   flex-direction: column;
   width: 42.5%;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .settingsLine {
   display: flex;
   flex-direction: column;
   margin: 25px 0;
-  align-items: center; }
+  align-items: center;
+}
 
 .contentWrapper {
   width: 85%;
-  border: 2px solid crimson; }
+  border: 2px solid crimson;
+}
 
 .radioButtons {
   display: flex;
   user-select: none;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .radioButton {
-  display: none; }
-  .radioButton + label {
-    display: block;
-    padding: 5px 15px;
-    cursor: pointer;
-    border: 2px solid crimson; }
-  .radioButton:checked + label {
-    color: #c1c1c1;
-    background: crimson; }
+  display: none;
+}
+
+.radioButton + label {
+  display: block;
+  padding: 5px 15px;
+  cursor: pointer;
+  border: 2px solid crimson;
+}
+
+.radioButton:checked + label {
+  color: #c1c1c1;
+  background: crimson;
+}
 
 .slider {
   font-family: inherit;
@@ -229,19 +284,24 @@ canvas {
   outline: none;
   background: crimson;
   -webkit-appearance: none;
-  appearance: none; }
-  .slider:before {
-    position: absolute;
-    top: 0;
-    right: 101%;
-    content: attr(min);
-    color: black; }
-  .slider:after {
-    position: absolute;
-    top: 0;
-    left: 101%;
-    content: attr(max);
-    color: black; }
+  appearance: none;
+}
+
+.slider:before {
+  position: absolute;
+  top: 0;
+  right: 101%;
+  content: attr(min);
+  color: black;
+}
+
+.slider:after {
+  position: absolute;
+  top: 0;
+  left: 101%;
+  content: attr(max);
+  color: black;
+}
 
 .slider::-webkit-slider-thumb {
   width: 25px;
@@ -250,39 +310,52 @@ canvas {
   transition: .2s;
   background: #4caf50;
   -webkit-appearance: none;
-  appearance: none; }
-  .slider::-webkit-slider-thumb:active {
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.7); }
+  appearance: none;
+}
+
+.slider::-webkit-slider-thumb:active {
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.7);
+}
 
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   cursor: pointer;
   transition: .2s;
-  background: #4caf50; }
-  .slider::-moz-range-thumb:active {
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.7); }
+  background: #4caf50;
+}
+
+.slider::-moz-range-thumb:active {
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.7);
+}
 
 #speedSlider {
-  direction: rtl; }
-  #speedSlider:before {
-    top: 25px;
-    right: 10px;
-    content: 'Faster'; }
-  #speedSlider:after {
-    top: 25px;
-    left: 10px;
-    content: 'Slower'; }
+  direction: rtl;
+}
+
+#speedSlider:before {
+  top: 25px;
+  right: 10px;
+  content: 'Faster';
+}
+
+#speedSlider:after {
+  top: 25px;
+  left: 10px;
+  content: 'Slower';
+}
 
 #stepsSlider:before {
   top: 25px;
   right: 10px;
-  content: 'More'; }
+  content: 'More';
+}
 
 #stepsSlider:after {
   top: 25px;
   left: 10px;
-  content: 'Less'; }
+  content: 'Less';
+}
 
 #aboutGameInfo {
   position: absolute;
@@ -292,12 +365,14 @@ canvas {
   left: 50%;
   transition: opacity .3s, width .4s .5s, box-shadow .7s .5s;
   transform: translateX(-50%);
-  opacity: 0; }
+  opacity: 0;
+}
 
 #aboutGameInfo.active {
   width: 25%;
   opacity: 1;
-  box-shadow: 0 0 70px 30px black; }
+  box-shadow: 0 0 70px 30px black;
+}
 
 #showInfoCloseButton {
   font-size: 25px;
@@ -306,19 +381,24 @@ canvas {
   right: 10px;
   padding: 10px;
   cursor: pointer;
-  background: #c1c1c1; }
+  background: #c1c1c1;
+}
 
 .middleWithText {
   padding: 15px;
-  padding-top: 30px; }
-  .middleWithText p {
-    margin-bottom: 10px;
-    text-indent: 25px; }
+  padding-top: 30px;
+}
+
+.middleWithText p {
+  margin-bottom: 10px;
+  text-indent: 25px;
+}
 
 .infoSectionWrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; }
+  justify-content: space-around;
+}
 
 .showInfoButton {
   position: relative;
@@ -332,24 +412,32 @@ canvas {
   transition: .3s;
   border: 2px solid crimson;
   background-repeat: no-repeat;
-  background-position: center left 5px; }
-  .showInfoButton:after {
-    position: absolute;
-    z-index: -100;
-    top: 0;
-    right: -40px;
-    width: 100%;
-    height: 100%;
-    content: '';
-    transition: .3s;
-    background-color: crimson; }
-  .showInfoButton:hover:after {
-    right: 0; }
-  .showInfoButton:hover {
-    color: #c1c1c1; }
+  background-position: center left 5px;
+}
+
+.showInfoButton:after {
+  position: absolute;
+  z-index: -100;
+  top: 0;
+  right: -40px;
+  width: 100%;
+  height: 100%;
+  content: '';
+  transition: .3s;
+  background-color: crimson;
+}
+
+.showInfoButton:hover:after {
+  right: 0;
+}
+
+.showInfoButton:hover {
+  color: #c1c1c1;
+}
 
 #aboutGameInfoTextContent {
-  margin-top: 30px; }
+  margin-top: 30px;
+}
 
 /* .showInfoButton.abtBtn {
 	background-image: url(../images/about-32.png);

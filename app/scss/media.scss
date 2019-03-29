@@ -1,18 +1,61 @@
 /*==========  Desktop First Method  ==========*/
 
 /* Large Devices, Wide Screens */
-@media only screen and (max-width : 1140px) {
-
+@media only screen and (max-width : 1800px) {
+	#controlKeys {
+		font-size: 63px;
+	}
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-
+@media only screen and (max-width : 1590px) {
+	#controlKeys {
+		font-size: 55px;
+	}
+	.middleLine {
+		width: 20%;
+	}
+	.contentBox {
+		width: 40%;
+	}
+	h2.comTitle {
+		font-size: 35px;
+	}
+	h3.comTitle {
+		font-size: 20px;
+	}
+	.middleWithText {
+		font-size: 15px;
+	}
+	#controlKeys {
+		width: 125%;
+		transform: translate(-10%, 0) perspective(250px) rotateX(35deg);
+	}
+	.showInfoButton  {
+		height: 75px;
+	}
 }
 
 /* Small Devices, Tablets */
-@media only screen and (max-width : 768px) {
-
+@media only screen and (max-width : 1310px) {
+	#controlKeys {
+		font-size: 35px;
+	}
+	h2.comTitle {
+		font-size: 25px;
+	}
+	h3.comTitle {
+		font-size: 15px;
+	}
+	.middleWithText {
+		font-size: 12px;
+	}
+	.showInfoButton {
+		font-size: 13px;
+	}
+	label {
+		font-size: 12px;
+	}
 }
 
 
